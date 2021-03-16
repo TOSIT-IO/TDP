@@ -3,7 +3,7 @@
 ## Tosit Data Platform Release TDP-0.1.0 components version
 
 | Component          | Version       | Apache Git branch |  TDP Git Branch    |
-| -------------      |:-------------:| -----            :|                    |
+| -------------------|---------------|-------------------|--------------------|
 | Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |
 | Apache Hadoop      | 3.1.1         | rel/release-3.1.1 |  branch-3.1.1-TDP  |
 | Apache Hive        | 3.1.0         | branch-3.1        |  XXX               |
