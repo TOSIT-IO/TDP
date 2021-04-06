@@ -6,9 +6,15 @@
 | -------------------|---------------|-------------------|--------------------|
 | Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |
 | Apache Hadoop      | 3.1.1         | rel/release-3.1.1 |  branch-3.1.1-TDP  |
-| Apache Hive        | 3.1.0         | branch-3.1        |  XXX               |
+| Apache Hive        | 3.1.X         | branch-3.1        |  XXX               |
 | Apache Tez         | 0.9.1         | branch-0.9.1      |  XXX               |
+| Apache Spark       | 2.3.X         | branch-2.4        |  XXX               |
+| Apache Ranger      | 1.2.X         | ranger-1.2        |  XXX               |
 | Apache Oozie       | 4.3.1         | branch-4.3        |  XXX               |
+
+Versions are based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/hdp_relnotes.html).
+
+**Note**: X means that the Apache foundation maintains a branch with this specific minor version of the component on which are backported fixes and features. We will be using these branches as much as possible if they are maintained and compatible.
 
 ## TDP Components release
 
