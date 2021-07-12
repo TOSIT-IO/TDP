@@ -7,7 +7,7 @@
 | Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |
 | Apache Hadoop      | 3.1.1         | rel/release-3.1.1 |  branch-3.1.1-TDP  |
 | Apache Hive        | 3.1.3         | branch-3.1        |  branch-3.1-TDP    |
-| Apache Hive 1      | 3.1.3         | branch-3.1        |  branch-3.1-TDP    |
+| Apache Hive 1      | 1.2.3         | branch-1.2        |  branch-1.2-TDP    |
 | Apache Tez         | 0.9.1         | branch-0.9.1      |  branch-0.9.1-TDP  |
 | Apache Spark       | 2.3.5         | branch-2.3        |  branch-2.3-TDP    |
 | Apache Ranger      | 2.0.1         | ranger-1.2        |  ranger-2.0-TDP    |
