@@ -6,11 +6,12 @@
 | -------------------|---------------|-------------------|--------------------|
 | Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |
 | Apache Hadoop      | 3.1.1         | rel/release-3.1.1 |  branch-3.1.1-TDP  |
-| Apache Hive        | 3.1.X         | branch-3.1        |  XXX               |
-| Apache Tez         | 0.9.1         | branch-0.9.1      |  XXX               |
-| Apache Spark       | 2.3.X         | branch-2.4        |  XXX               |
-| Apache Ranger      | 1.2.X         | ranger-1.2        |  XXX               |
-| Apache Oozie       | 4.3.1         | branch-4.3        |  XXX               |
+| Apache Hive        | 3.1.3         | branch-3.1        |  branch-3.1-TDP    |
+| Apache Hive 1      | 3.1.3         | branch-3.1        |  branch-3.1-TDP    |
+| Apache Tez         | 0.9.1         | branch-0.9.1      |  branch-0.9.1-TDP  |
+| Apache Spark       | 2.3.5         | branch-2.3        |  branch-2.3-TDP    |
+| Apache Ranger      | 2.0.1         | ranger-1.2        |  ranger-2.0-TDP    |
+| Apache Oozie       | 5.3.0         | master            |  master-tdp        |
 
 Versions are based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/hdp_relnotes.html).
 
@@ -18,12 +19,12 @@ Versions are based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocum
 
 ## TDP Components release
 
-Every TDP initial release is built from a reference branch on the Apache Git repository according to the above table. The only additional change from the original branches is the version declaration in the pom.xml files.
+Every TDP initial release is built from a reference branch on the Apache Git repository according to the above table. The main change from the original branches is the version declaration in the pom.xml files.
 
-## Kubernetes based Building / Testing environment
+## Building / Testing environment
 
 The builds / unit testing of the Maven Java projects of each component above can be run in Kubernetes pods which are scheduled by a Jenkins installation also running on Kubernetes.
-Kubernetes pods scheduling allows for **truly**  reproducible and isolated builds. Jenkins' strong integration with the Java ecosystem is a perfect match to build the components of the distribution.
+Kubernetes pods scheduling allows for **truly** reproducible and isolated builds. Jenkins' strong integration with the Java ecosystem is a perfect match to build the components of the distribution.
 
 ### Kubernetes
 
