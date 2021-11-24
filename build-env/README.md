@@ -18,7 +18,7 @@ The image can be built and tagged with:
 docker build . -t tdp-builder
 ```
 
-This is a base image on which you need to build another image containing you local user. This is mandatory because files needs to be written to your local MVN repository.
+This is a base image on which you need to build another image containing you local user. This is mandatory because files needs to be written to your local Maven cache with the right permissions.
 
 ```
 docker build -t "hadoop-build-${USER_ID}" - <<UserSpecificDocker
