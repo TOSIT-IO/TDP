@@ -16,8 +16,10 @@ ENV HOME /home/${USER_NAME}
 
 UserSpecificDocker
 
+TDP_HOME="${TDP_HOME:=$(pwd)}"
+
 docker run --rm=true -t -i \
-  -v "$(pwd):/tdp" \
+  -v "${TDP_HOME}:/tdp" \
   -w "/tdp" \
   -v "${HOME}/.m2:/home/${USER_NAME}/.m2${V_OPTS:-}" \
   -u "${USER_NAME}" \

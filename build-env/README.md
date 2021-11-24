@@ -33,13 +33,15 @@ UserSpecificDocker
 
 All these steps can run with `./bin/start-build-env.sh`
 
+**Note:** By default, the current directory is mounted to the build container, you can change the mounted directory to where the TDP source repository live by running `export TDP_HOME="/path/to/tdp"` before running the `start-build-env.sh` script. 
+
 ## Start the container
 
 The container should be started with:
 
 ```
 docker run --rm=true -t -i \
-  -v "$(pwd):/tdp" \
+  -v "${TDP_HOME}:/tdp" \
   -w "/tdp" \
   -v "${HOME}/.m2:/home/${USER_NAME}/.m2${V_OPTS:-}" \
   -u "${USER_NAME}" \
@@ -50,3 +52,4 @@ docker run --rm=true -t -i \
 The important parameters are:
 - ~/.m2 should mounted to have the compiled jar outside the container and use of your local maven cache for faster builds
 - --ulimit nofile=500000:500000 is helpful to run the tests (some are resource intensive and break easily with a low ulimit)
+- TDP_HOME is where the TDP repositories (hadoop, hive, hbase, etc) are cloned
