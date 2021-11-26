@@ -43,28 +43,30 @@ Prerequisites : All the following things are supposed to be setup and in a funct
 - SSL
 - Hadoop cluster must have already been deployed
 
-|                                            ZK
-|                                             |
-|                                             |
-|                                       Ranger Admin
-|                                             |
-|                                             |
-|                                            JN
-|                                             |
-|                                             |
-|                                           ZKFC
-|                                             |
-|                                             |
-|              ___________________________ NN + DN____________________________ 
-|             |                               |                               |
-|             |                               |                               |
-|         SPARK HS                    YNM + YRM + YATS                   HBASE MASTER
-|             |                               |                               |
-|             |                               |                        HBASE RS + REST
-|             |                           HS2 + HSM                           |
-|             |                               |                           PHOENIX QS
-|             |____________________________   |  _____________________________|
-|                                           OOZIE
-|                                             |
-|                                             |
-|                                           KNOX
+<pre>
+                                            ZK
+                                             |
+                                             |
+                                       Ranger Admin
+                                             |
+                                             |
+                                            JN
+                                             |
+                                             |
+                                           ZKFC
+                                             |
+                                             |
+              ___________________________ NN + DN____________________________ 
+             |                               |                               |
+             |                               |                               |
+         SPARK HS                    YNM + YRM + YATS                   HBASE MASTER
+             |                               |                               |
+             |                               |                        HBASE RS + REST
+             |                           HS2 + HSM                           |
+             |                               |                           PHOENIX QS
+             |____________________________   |  _____________________________|
+                                           OOZIE
+                                             |
+                                             |
+                                           KNOX
+</pre>
