@@ -43,6 +43,8 @@ Prerequisites : All the following things are supposed to be setup and in a funct
 - SSL
 - Hadoop cluster must have already been deployed
 
+Here are services dependancies
+
 <pre>
                                             ZK
                                              |
@@ -69,4 +71,49 @@ Prerequisites : All the following things are supposed to be setup and in a funct
                                              |
                                              |
                                            KNOX
+</pre>
+
+## CONFIGURATIONS MANAGEMENT
+
+Playbook orchestration, versionning
+LEVEL 0 : Hadoop cluster must have already been deployed
+LEVEL 1 : No existing Hadoop cluster
+
+### GIT REPO for OPS, VARS, TOPOLOGIES
+
+Git repo is synchronized, the API server is the only instance that can push to the remote
+On the GIT, only vars are stored, not XML files
+Rule is : 1 modification = 1 commit
+We use an RDBMS instance in order to store this historic of deployment actions
+When we deploy:
+- 0 : We choose the commit
+- 1 : We do the deployment action
+- 2 : We write the action in the RDBMS
+
+If a Rollback is needed -> Git revert (1 and only 1 commit)
+
+Configuration management scope is the whole cluster (1 and only 1 ops repo)
+
+### GIT REPO for Ansible Collections
+
+.
+
+## METROLOGY
+
+### UI
+UI = GRAFANA
+Backend = Prometheus
+Is there any kind of feature for time-frame merging in Prometheus ?
+If not, let's have a look at a solution with GRAPHITE + an agent
+
+### Logs
+We log services like this
+<pre>
+                                         Log file
+                                             |
+                                             |
+                                          Fluentd
+                                             |
+                                             |
+                                      Elasticsearch
 </pre>
