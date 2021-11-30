@@ -15,32 +15,41 @@ Bare metal cluster (eg: prod):
 | Worker |  5  | 64GB | 16 threads | 2x 500GB RAID 1 (OS+logs)         | 2x10 Gbps |
 |        |     |      |            | 6x 2TB JBOD (HDFS)                |           |
 | Master |  3  | 64GB | 16 threads | 2x 500GB RAID 1 (OS+logs)         | 2x10 Gbps |
-|        |     |      |            | 2x 2TB RAID 1 (HDFS)              |           |
-|        |     |      |            | 2x 2TB RAID 1 (RDBMS)             |           |
-|        |     |      |            | 2x 2TB RAID 1 (ZooKeeper)         |           |
+|        |     |      |            | 2x 500GB SSD RAID 1 (HDFS)        |           |
+|        |     |      |            | 2x 500GB SSD RAID 1 (RDBMS)       |           |
+|        |     |      |            | 2x 500GB SSD RAID 1 (ZooKeeper)   |           |
 | Edge   |  2  | 16GB | 4 threads  | 2x 1TB RAID 1 (OS+logs+user data) | 2x10 Gbps |
 
 Note, by thread we mean logical threads and not physical cores.
 
 Virtualized cluster (eg: dev, testing):
 
-| Role   | Qtt | RAM | CPUs       | Disks                             |
-| ------ | --- | --- | ---------- | --------------------------------- |
-| Worker |  2  | 4GB | 2 threads  | 1x 500GB RAID 1 (OS+logs)         |
-|        |     |     |            | 6x 2TB JBOD (HDFS)                |
-| Master |  3  | 6GB | 1 threads  | 2x 500GB RAID 1 (OS+logs)         |
-|        |     |     |            | 2x 2TB RAID 1 (HDFS)              |
-|        |     |     |            | 2x 2TB RAID 1 (RDBMS)             |
-|        |     |     |            | 2x 2TB RAID 1 (ZooKeeper)         |
-| Edge   |  1  | 4GB | 1 threads  | 2x 1TB RAID 1 (OS+logs+user data) |
+| Role   | Qtt | RAM | CPUs       | Disks  |
+| ------ | --- | --- | ---------- | ------ |
+| Worker |  2  | 4GB | 2 threads  | 30GB   |
+| Master |  3  | 6GB | 1 threads  | 30GB   |
+| Edge   |  1  | 4GB | 1 threads  | 5GB    |
 
-### Minimal switches requirements
+### CPU
+
+Depending on your workload, the optimal ration cost/performance is usually achieved on worker node with mid-range CPUs. For master node, mid-range CPUs with slighly higher performance are good candidates.
+
+### Disks
+
+Sata disks are a popular and cost effective choice offering large storage possibilities. For usecase requirement frequent IO disk access on smaller dataset, SSD is a reasonble alternative. [Heterogeneous storage](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/ArchivalStorage.html) in HDFS combine multiple types of disk to answer different workloads.
 
 ## Network
 
 ### DNS
 
-Cluster nodes must be able to resolve all the other cluster nodes using forward and reverse DNS; and to connect to all other cluster nodes.
+Cluster nodes must be able to resolve all the other cluster nodes using forward and reverse DNS and to connect to all other cluster nodes.
+
+```bash
+FQDN='my.domain.com'
+IP='10.10.10.10'
+dig $FQDN +short | grep -x $IP
+dig -x $IP +short | grep -x $FQDN
+```
 
 ### Cluster isolation and access configuration
 
@@ -48,17 +57,17 @@ It is important to isolate the Hadoop cluster so that external network traffic d
 
 It is recommended deploying ResourceManager, NameNode, and Worker nodes on their own private Hadoop cluster subnet.
 
-Refers to the Big Data reference architecture of your constructor and stricly respect its recommandation.
+Refers to the Big Data reference architecture of your constructor and stricly respect its recommandations.
 
 #### Single-racks configuration
 
-Two ToR switches are specified in each rack for high performance and redundancy. Each provides fast uplinks, for example 40GbE, that can be used to connect to the desired network or, in a multi-rack configuration, to another pair of ToR switches that are used for aggregation.
+It is recommanded to place two ToR switches in each rack for high performance and redundancy. Each provides fast uplinks, for example 40GbE, that can be used to connect to the desired network or, in a multi-rack configuration, to another pair of ToR switches that are used for aggregation.
 
 The other ports connect every nodes present inside the rack, commonly with a 10GbE. Each node configures network bonding with two 10 GbE server ports, for up to a max 20 GbE throughput.
 
 #### Multi-racks configuration
 
-The architecture for the multi-rack solution borrows from the single-rack design.
+The architecture for the multi-rack solution borrows from the single-rack design and extends the existing infrastructure. Each rack is assembled with the same ToR switches connected to a pair of aggregation switches with a fast connection, for example 40GbE.
 
 ### Internet Access
 
@@ -112,12 +121,12 @@ The following network components have to be disabled inside of the cluster:
 - IPTables disabled
 - SELinux disabled
 
-External connection:
+External connections:
 
 - ZooKeeper:
 
 - HDFS
-  The HDFS client must be able to reach every Hadoop DataNode in the cluster in order to stream blocks of data to the filesystem.
+  The HDFS clients must be able to reach every Hadoop DataNode in the cluster in order to stream blocks of data to the filesystem.
 
 - YARN
 
