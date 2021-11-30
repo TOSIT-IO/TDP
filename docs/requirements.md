@@ -73,14 +73,31 @@ The architecture for the multi-rack solution borrows from the single-rack design
 
 The machine used for TDP compilation needs full internet access to build the Docker image and download Maven dependencies.
 
+## External services
+
+- KDC
+  A Working Kerberos server is required. Popular solutions include ActiveDirectory, FreeIPA and MIT Kerberos server.
+- LDAP
+  A Working LDAP server is required. Popular solutions include ActiveDirectory, FreeIPA and OpenLDAP.
+- RDBMS
+  A Working relationnal database is required. Supported solutions include PostgreSQL, MariaDB and MySQL.
+- SSL/TLS
+  Public and private keys must be provided for each node of the cluster inside a local folder.
+
 ## System
 
 ### OS
 
-TDP has been tested for the following Operating Systems:
+TDP has been tested for the following operating systems:
 
 - RHEL 7
 - CentOS 7
+
+## Service daemons
+
+- SSSD
+- Time service
+  A clock synchronization service is required to coordinate the system. NTP and chrony are popular service in the Linux eco-system.
 
 ### Swap
 
