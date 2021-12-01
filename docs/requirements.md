@@ -11,24 +11,30 @@ Of course, testing and QA environments can have lower configurations.
 Bare metal cluster (eg: prod):
 
 | Role   | Qtt | RAM  | CPUs       | Disks                             | NICs      |
-| ------ | --- | ---- | ---------------------------------------------- | --------- |
-| Worker |  5  | 64GB | 16 threads | 2x 500GB RAID 1 (OS+logs)         | 2x10 Gbps |
+| ------ | --- | ---- | ---------- | --------------------------------- | --------- |
+| Worker | 5   | 64GB | 16 threads | 2x 500GB RAID 1 (OS+logs)         | 2x10 Gbps |
 |        |     |      |            | 6x 2TB JBOD (HDFS)                |           |
-| Master |  3  | 64GB | 16 threads | 2x 500GB RAID 1 (OS+logs)         | 2x10 Gbps |
+| Master | 3   | 64GB | 16 threads | 2x 500GB RAID 1 (OS+logs)         | 2x10 Gbps |
 |        |     |      |            | 2x 500GB SSD RAID 1 (HDFS)        |           |
 |        |     |      |            | 2x 500GB SSD RAID 1 (RDBMS)       |           |
 |        |     |      |            | 2x 500GB SSD RAID 1 (ZooKeeper)   |           |
-| Edge   |  2  | 16GB | 4 threads  | 2x 1TB RAID 1 (OS+logs+user data) | 2x10 Gbps |
+| Edge   | 2   | 16GB | 4 threads  | 2x 1TB RAID 1 (OS+logs+user data) | 2x10 Gbps |
 
 Note, by thread we mean logical threads and not physical cores.
 
 Virtualized cluster (eg: dev, testing):
 
-| Role   | Qtt | RAM | CPUs       | Disks  |
-| ------ | --- | --- | ---------- | ------ |
-| Worker |  2  | 4GB | 2 threads  | 30GB   |
-| Master |  3  | 6GB | 1 threads  | 30GB   |
-| Edge   |  1  | 4GB | 1 threads  | 5GB    |
+| Role   | Qtt | RAM | CPUs      | Disks |
+| ------ | --- | --- | --------- | ----- |
+| Worker | 2   | 4GB | 2 threads | 30GB  |
+| Master | 3   | 6GB | 1 threads | 30GB  |
+| Edge   | 1   | 4GB | 1 threads | 5GB   |
+
+TDP compilation host:
+
+| RAM | CPUs      | Disks |
+| --- | --------- | ----- |
+| 8GB | 4 threads | 50GB  |
 
 ### CPU
 
@@ -71,7 +77,7 @@ The architecture for the multi-rack solution borrows from the single-rack design
 
 ### Internet Access
 
-The machine used for TDP compilation needs full internet access to build the Docker image and download Maven dependencies.
+The machine used for TDP compilation needs full internet access to build the Docker image and download build dependencies (Maven, NPM, Ruby, etc.).
 
 ## External services
 
@@ -122,9 +128,7 @@ Supported file systems:
 
 ### Partitioning
 
-All cluster nodes must have:
-
-- 1 root partition (`/`) for OS and software
+All cluster nodes must have 1 root partition (`/`) for OS and software.
 
 For worker nodes, each Hadoop dedicated disk should be mounted on a `/grid/[0-N]` partition without using LVM.
 
@@ -239,5 +243,5 @@ For Hive, Oozie and Ranger, the following databases are supported:
 
 ## Additionnal information
 
-* [HP Reference Architecture for Hortonworks Data Platform 2.1](https://www.suse.com/partners/alliance/hpe/hp-reference-architecture.pdf)   
+- [HP Reference Architecture for Hortonworks Data Platform 2.1](https://www.suse.com/partners/alliance/hpe/hp-reference-architecture.pdf)  
   See appendix B: Hadoop cluster tuning/optimization
