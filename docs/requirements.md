@@ -61,7 +61,7 @@ dig -x $IP +short | grep -x $FQDN
 
 It is important to isolate the Hadoop cluster so that external network traffic does not affect the performance of the cluster. In addition, isolation allows the Hadoop cluster to be managed independently from its users, ensuring that the cluster administrator is the only person able to make changes to the cluster configuration.
 
-It is recommended deploying ResourceManager, NameNode, and Worker nodes on their own private Hadoop cluster subnet.
+It is recommended deploying master and worker nodes inside their own private cluster subnet.
 
 Refers to the Big Data reference architecture of your constructor and stricly respect its recommandations.
 
