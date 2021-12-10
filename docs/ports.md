@@ -28,6 +28,8 @@
     External access: yes
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
+    
+    Verified
 
   - Metadata RPC service
 
@@ -42,6 +44,10 @@
     External access: yes
 
     [Source](https://hadoop.apache.org/docs/r3.0.0/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html)
+
+    [Source](https://issues.apache.org/jira/browse/HDFS-9427)
+    
+    Verified
 
 - ZKFC
 
@@ -59,6 +65,10 @@
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/DFSConfigKeys.java)
+
+    Verified
+
 - DataNode
 
   - Secure data transfert
@@ -74,7 +84,16 @@
     External access: no
 
     [Source privileged port](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SecureMode.html)
+
     [Source non-privilege port](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
+
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/fs/FileContext.java)
+
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/DFSConfigKeys.java)
+
+    [Source](https://issues.apache.org/jira/browse/HDFS-9427)
+
+    Verified
 
   - Metadata HTTPS service
 
@@ -90,6 +109,10 @@
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/DFSConfigKeys.java)
+
+    Verified
+
   - Metadata RPC service
 
     The DataNode RCP server address and port used for metadata information.
@@ -104,6 +127,12 @@
 
     [Source](https://hadoop.apache.org/docs/r3.0.0/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/DFSConfigKeys.jav)
+
+    [Source](https://issues.apache.org/jira/browse/HDFS-9427)
+    
+    Verified
+    
 - JournalNode
 
   - RPC server
@@ -119,6 +148,10 @@
     External access: no
 
     [Source](https://hadoop.apache.org/docs/r3.0.0/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
+    
+    [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/cadf02e0a849b878b9510a29c30aa3144d9aa789/roles/hadoop/defaults/main.yaml)
+    
+    Verified
 
   - HTTPS server
 
@@ -133,6 +166,10 @@
     External access: no
 
     [Source](https://hadoop.apache.org/docs/r3.0.0/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
+
+    [Source](hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/DFSConfigKeys.java)
+
+    Verified
 
 ## YARN
 
@@ -151,12 +188,16 @@
     External access: no
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+
+    [Source](hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java)
   
+    Verified
+
   - RPC server
 
-    The address of the applications manager interface in the RM. It is used to submit jobs. In YARN HA configuration, `yarn.resourcemanager.address` is redundant and instead `yarn.resourcemanager.address.{id}` is resolved and uses port 8032.
+    The address of the applications manager interface in the RM. It is used to submit jobs. In YARN non HA configuration `yarn.resourcemanager.address` uses port 8050. In YARN HA configuration, `yarn.resourcemanager.address` is redundant and instead `yarn.resourcemanager.address.{id}` is resolved and uses port 8032.
 
-    Port: 8050
+    Port: 8032
 
     Protocol: IPC
 
@@ -166,6 +207,12 @@
 
     [Source default port](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
     [Source YARN HA port](https://community.cloudera.com/t5/Support-Questions/What-is-the-default-Yarn-resource-manager-port-Is-it-8032-or/td-p/138143)
+
+    [Source](hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/test/java/org/apache/hadoop/yarn/server/resourcemanager/TestRMHA.java)
+
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java)
+
+    Verified
 
   - HTTPS server
 
@@ -181,11 +228,15 @@
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
 
+    [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/cadf02e0a849b878b9510a29c30aa3144d9aa789/roles/hadoop/defaults/main.yaml)
+
+    Verified
+
   - Admin RPC server
 
     It is used by administrators and developers.
 
-    Port: 3033
+    Port: 8033
 
     Protocol: RPC
 
@@ -193,7 +244,9 @@
 
     External access: yes
 
-    [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+    [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xmlhttps://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml)
+
+    Verified
 
   - Scheduler
 
@@ -207,7 +260,9 @@
 
     External access: no
 
-    [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml)
+
+    Verified
 
 - NodeManager
 
@@ -225,6 +280,12 @@
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
 
+    [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/cadf02e0a849b878b9510a29c30aa3144d9aa789/roles/hadoop/defaults/main.yaml)
+
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml)
+
+    Verified
+
   - Localizer
 
     Address where the localizer IPC is. It is responsible for downloading and copying remote resources on the local filesystem.
@@ -239,6 +300,8 @@
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
 
+    Verified
+
   - HTTPS server
 
     WebUI server of the NodeManager for administrator and developers.
@@ -252,6 +315,10 @@
     External access: yes
 
     [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+
+    [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/cadf02e0a849b878b9510a29c30aa3144d9aa789/roles/hadoop/defaults/main.yaml)
+
+    Verified
 
   - ApplicationMaster
 
@@ -293,8 +360,13 @@
 
     External access: yes
 
-    [Source](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml)
 
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java)
+    
+    [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-applicationhistoryservice/src/test/java/org/apache/hadoop/yarn/server/timeline/security/TestTimelineAuthenticationFilterForV1.java)
+
+    Verified
 ## MapReduce Job History Server
 
 - Job History RPC server
@@ -311,6 +383,12 @@
 
   [Source](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
 
+  [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/cadf02e0a849b878b9510a29c30aa3144d9aa789/roles/hadoop/defaults/main.yaml)
+
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/resources/mapred-default.xml)
+
+  Verified
+
 - Job History WebUI
 
   The MapReduce JobHistory Server Web UI, `{FQDN}:{PORT}`. It is used by administrators and developers.
@@ -323,7 +401,11 @@
 
   External access: yes
 
-  [Source](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/resources/mapred-default.xml)
+
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-common/src/main/java/org/apache/hadoop/mapreduce/v2/jobhistory/JHAdminConfig.java)
+
+  Verified
 
 - Shuffle Handler
 
@@ -337,7 +419,11 @@
 
   External access: no
 
-  [Source](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
+  [Source](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xmlhttps://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/ShuffleHandler.java)
+
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-shuffle/src/main/java/org/apache/hadoop/mapred/ShuffleHandler.java)
+
+  Verified
 
 - RPC admin server
 
@@ -351,7 +437,9 @@
 
   External access: no
 
-  [Source](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/main/resources/mapred-default.xmlhttps://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
+
+  Verified
 
 ## ZooKeeper
 
@@ -369,6 +457,14 @@
 
   [Source](https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configurationhttps://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_configuration)
 
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-common-project/hadoop-common/src/main/resources/core-default.xml)
+
+  [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/0f62840bd064c7334aa7f89f21e3695ca6952b50/roles/zookeeper/templates/zoo.cfg.j2)
+
+  [Source](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-applications/hadoop-yarn-services/hadoop-yarn-services-core/src/main/java/org/apache/hadoop/yarn/service/utils/ZookeeperUtils.java)
+
+  Verified
+
 - Leader server
 
   Peers use the former port to connect to other peers, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader.
@@ -383,6 +479,10 @@
 
   [Source](https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configurationhttps://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_configuration)
 
+  [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/2d2d97e2e45f89861fcf0dbdd74d5a603df6062c/roles/zookeeper/defaults/main.yml)
+
+  Verified
+
 - Leader election connections
 
   Server connections used during the leader election phase.
@@ -396,6 +496,10 @@
   External access: no
 
   [Source](https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configurationhttps://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_configuration)
+
+  [Source](https://github.com/TOSIT-FR/ansible-tdp-roles/blob/2d2d97e2e45f89861fcf0dbdd74d5a603df6062c/roles/zookeeper/defaults/main.yml)
+
+  Verified
 
 ## Hive
 
@@ -412,12 +516,18 @@
   External access: yes
 
   [Source](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)
+  
+  [Source](https://github.com/TOSIT-FR/hive/blob/0c5e9e0aae48324335cfeae757e2d37258207b3c/standalone-metastore/src/main/java/org/apache/hadoop/hive/metastore/conf/MetastoreConf.java)
+
+  [Source](https://github.com/TOSIT-FR/hive/blob/0c5e9e0aae48324335cfeae757e2d37258207b3c/common/src/java/org/apache/hadoop/hive/conf/HiveConf.java)
+
+  Verified
 
 - [Hive Server 2](https://cwiki.apache.org/confluence/display/hive/setting+up+hiveserver2)
 
   The JDBC/ODBC interface to the Hive Metastore.
 
-  Port: 10001
+  Port: 10000
 
   Protocol: RPC
 
@@ -426,6 +536,10 @@
   External access: yes
 
   [Source](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)
+
+  [Source](https://github.com/TOSIT-FR/hive/blob/0c5e9e0aae48324335cfeae757e2d37258207b3c/common/src/java/org/apache/hadoop/hive/conf/HiveConf.java)
+
+  Verified
 
 - [Web User Interface (UI)](https://cwiki.apache.org/confluence/display/hive/setting+up+hiveserver2#SettingUpHiveServer2-WebUIforHiveServer2)
 
@@ -441,6 +555,9 @@
 
   [Source](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)
 
+  [Source](https://github.com/TOSIT-FR/hive/blob/0c5e9e0aae48324335cfeae757e2d37258207b3c/common/src/java/org/apache/hadoop/hive/conf/HiveConf.java)
+
+  Verified
 ## Ranger
 
 - Policy Manager
@@ -457,6 +574,9 @@
 
   [Source](https://github.com/apache/ranger/blob/7e80592481306bb0711f7a7544b2c6c64cbebadf/security-admin/src/main/resources/conf.dist/ranger-admin-site.xml)
 
+  [Source](https://github.com/TOSIT-FR/ranger/blob/4992a349905451939951c994b0bb18bd584f59a3/security-admin/scripts/ranger-admin-site-template.xml)
+
+  Verified
 ## Oozie
 
 - Web UI
@@ -471,8 +591,13 @@
 
   External access: yes
 
-  [Source installation guide](https://github.com/apache/oozie/blob/f1e01a9e155692aa5632f4573ab1b3ebeab7ef45/docs/src/site/markdown/AG_Install.md)
-  [Source defaults.xml](https://github.com/apache/oozie/blob/f1e01a9e155692aa5632f4573ab1b3ebeab7ef45/core/src/main/resources/oozie-default.xml)
+  [Source](https://github.com/apache/oozie/blob/f1e01a9e155692aa5632f4573ab1b3ebeab7ef45/docs/src/site/markdown/AG_Install.md)
+
+  [Source](https://github.com/TOSIT-FR/oozie/blob/a15fedba1baeb5186ac86f54457a27ef4b738b88/sharelib/oozie/src/test/resources/instrumentation-os-env.json)
+
+  [Source](https://github.com/apache/oozie/blob/f1e01a9e155692aa5632f4573ab1b3ebeab7ef45/core/src/main/resources/oozie-default.xml)
+
+  Verified
 
 - Admin
 
@@ -486,7 +611,11 @@
 
   External access: no
 
+  [Source](https://github.com/TOSIT-FR/oozie/blob/a15fedba1baeb5186ac86f54457a27ef4b738b88/sharelib/oozie/src/test/resources/instrumentation-os-env.json)
+
   [Source](https://oozie.apache.org/docs/3.3.2/AG_Install.html)
+  
+  Verified
 
 ## Knox
 
@@ -502,7 +631,9 @@
 
   External access: yes
 
-  [Source](https://knox.apache.org/books/knox-1-1-0/user-guide.html)
+  [Source](https://github.com/TOSIT-FR/knox/blob/3c3f23a866d55de563c6574353019858590367d8/gateway-release/home/conf/gateway-site.xml)
+  
+  Verified
 
 ## Additionnal resources
 
@@ -510,3 +641,4 @@
 - [HDFS default configuration](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 - [YARN default configuration](https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
 - [MapReduce default configuration](https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
+- [HDFS should not default to ephemeral ports](https://issues.apache.org/jira/browse/HDFS-9427)
