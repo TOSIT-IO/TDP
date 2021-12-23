@@ -6,7 +6,7 @@ The following hardware requirements are given as a reference to reach optimal pe
 
 Testing and QA environments share lower configuration requirements.
 
-### Minimal requirements per node type
+### Recommended requirements per node type
 
 Bare metal cluster (eg: prod):
 
@@ -58,7 +58,7 @@ It is important to isolate the Hadoop cluster so that external network traffic d
 
 It is recommended to deploy master and worker nodes inside their own private cluster subnet.
 
-Refers to the Big Data reference architecture of your constructor and stricly respect its recommandations.
+Refer to the Big Data reference architecture of your constructor and stricly respect its recommandations.
 
 #### Single-racks configuration
 
@@ -107,7 +107,7 @@ Internal connections:
 The following network components have to be disabled inside of the cluster:
 
 - IPv6 disabled
-- IPTables disabled
+- IPTables disabled or configured properly for necessary ports of the TDP components (see [Ports and protocols used by TDP](./ports.md)).
 
 ## System
 
@@ -126,7 +126,7 @@ SELinux has not been tested in the context of TDP. While theorically possible, a
 
 - SSSD
 - Time service
-  A clock synchronization service is required to coordinate the system. NTP and chrony are popular service in the Linux eco-system.
+  A clock synchronization service is required to coordinate the system. NTP and chrony are popular services in the Linux eco-system.
 
 ### Swap
 
@@ -158,7 +158,7 @@ Supported file systems:
 - XFS
 
 ```
-mkfs –t ext4 –m 1 –O -T largefile \
+mkfs -t ext4 -m 1 -O -T largefile \
   sparse_super,dir_index,extent,has_journal \
   /dev/sdb1
 ```
