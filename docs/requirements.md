@@ -219,6 +219,22 @@ The compilation of TDP is done using a Docker image. The machine used for compil
 
 See [Install Docker Engine on RHEL](https://docs.docker.com/engine/install/rhel/#install-using-the-repository).
 
+The compilation node will need access to the TDP GitHub repositories:
+
+- TDP (Docker image): [https://github.com/TOSIT-FR/TDP](https://github.com/TOSIT-FR/TDP)
+- Hadoop: [https://github.com/TOSIT-FR/hadoop](https://github.com/TOSIT-FR/hadoop)
+- Hive: [https://github.com/TOSIT-FR/hive](https://github.com/TOSIT-FR/hive)
+- Tez: [https://github.com/TOSIT-FR/tez](https://github.com/TOSIT-FR/tez)
+- Spark: [https://github.com/TOSIT-FR/spark](https://github.com/TOSIT-FR/spark)
+- Ranger: [https://github.com/TOSIT-FR/ranger](https://github.com/TOSIT-FR/ranger)
+- Oozie: [https://github.com/TOSIT-FR/oozie](https://github.com/TOSIT-FR/oozie)
+- HBase: [https://github.com/TOSIT-FR/hbase](https://github.com/TOSIT-FR/hbase)
+- Phoenix: [https://github.com/TOSIT-FR/phoenix](https://github.com/TOSIT-FR/phoenix)
+- Phoenix Query Server: [https://github.com/TOSIT-FR/phoenix-queryserver](https://github.com/TOSIT-FR/phoenix-queryserver)
+- Knox: [https://github.com/TOSIT-FR/knox](https://github.com/TOSIT-FR/knox)
+
+Access to the official Apache ZooKeeper repo is also needed to download release 3.4.6: [https://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz](https://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz)
+
 ### Cluster hosts
 
 The following packages are expected to be installed on all cluster nodes:
@@ -255,12 +271,12 @@ The [Hadoop wiki](https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java
 - 1.8.0_242: The visibility of sun.nio.ch.SocketAdaptor is changed from public to package-private. TestIPC#testRTEDuringConnectionSetup is affected.
 - 1.8.0_242: Kerberos Java client will fail by "Message stream modified (41)" when the client requests a renewable ticket and the KDC returns a non-renewable ticket. If your principal is not allowed to obtain a renewable ticket, you must remove "renew_lifetime" setting from your krb5.conf.
 - 1.8.0_191: All DES cipher suites were disabled. If you are explicitly using DES cipher suites, you need to change cipher suite to a strong one.
-- 1.8.0_171: In Apache Hadoop 2.7.0 to 2.7.6, 2.8.0 to 2.8.4, 2.9.0 to 2.9.1, 3.0.0 to 3.0.2, and 3.1.0, KMS fails by java.security.UnrecoverableKeyException due to Enhanced KeyStore Mechanisms. You need to set the system property "jceks.key.serialFilter" to the following value to avoid this error:   
+- 1.8.0_171: In Apache Hadoop 2.7.0 to 2.7.6, 2.8.0 to 2.8.4, 2.9.0 to 2.9.1, 3.0.0 to 3.0.2, and 3.1.0, KMS fails by java.security.UnrecoverableKeyException due to Enhanced KeyStore Mechanisms. You need to set the system property "jceks.key.serialFilter" to the following value to avoid this error:  
   `java.lang.Enum;java.security.KeyRep;java.security.KeyRep$Type;javax.crypto.spec.SecretKeySpec;org.apache.hadoop.crypto.key.JavaKeyStoreProvider$KeyMetadata;!*"`
 
 [Cloudera](https://docs.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_java_requirements.html) list the following issues:
 
-> - JDK 8u271, JDK 8u281, and JDK 8u291 may cause socket leak issues due to JDK-8245417 and JDK-8256818. Pay attention to the build version of your JDK because some later builds are fixed as described in [JDK-8256818](https://bugs.openjdk.java.net/browse/JDK-8256818).   
+> - JDK 8u271, JDK 8u281, and JDK 8u291 may cause socket leak issues due to JDK-8245417 and JDK-8256818. Pay attention to the build version of your JDK because some later builds are fixed as described in [JDK-8256818](https://bugs.openjdk.java.net/browse/JDK-8256818).  
 >   Workaround: Consider using a more recent version of the JDK like 8u282, or builds of the JDK where the issue is fixed.
 > - JDK 8u40, 8u45, and 8u60 are not supported due to JDK issues impacting CDH functionality:
 >   - JDK 8u40 and 8u45 are affected by JDK-8077155, which affects HTTP authentication for certain web UIs.
@@ -278,6 +294,10 @@ For Hive, Oozie and Ranger, the following databases are supported:
 | PostgreSQL | 11, 10             |
 | MySQL      | 5.7                |
 | MariaDB    | 10.2               |
+
+### Ansible node
+
+The Ansible roles used to deploy TDP are available in the repository [https://github.com/TOSIT-FR/ansible-tdp-roles](https://github.com/TOSIT-FR/ansible-tdp-roles).
 
 ## Security
 
