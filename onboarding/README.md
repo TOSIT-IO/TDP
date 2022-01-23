@@ -5,12 +5,12 @@
 We welcome everyone!\
 You can participate in many ways to TDP, depending on your needs/skills/hardware.
 
-| You can be!        |
-| -------------------|
-| Core Developer     |
-| Cluster Admin      |
-| End User           |
-| Sandbox End User   |
+| You can be!        | Hardware requirements | Skills requirements |
+| -------------------|-----------------------|---------------------|
+| Core Developer     | + + + + +             | + + + + +           |
+| Cluster Admin      | + + +                 | + + +               |
+| End User           | + + +                 | + + +               |
+| Sandbox End User   | +                     | +                   |
 
 ## TDP Core Developer
 
