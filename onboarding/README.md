@@ -35,7 +35,7 @@ As core developer, your goal is to:
 - Create new features
 - Fix bugs
 
-In 1 sentence: You create Tarballs containing Jars & binaries
+In 1 sentence: You create Tarballs containing Jars & binaries.
 
 
 ## TDP Cluster Admin
@@ -61,7 +61,7 @@ As cluster admin, your goal is to:
 - Create new features in existing admin component
 - Fix bugs
 
-In 1 sentence: You use TDP tarballs to create cluster
+In 1 sentence: You use TDP tarballs to create cluster.
 
 ## TDP End User
 
@@ -72,7 +72,7 @@ Skill requirements:
 - A "good" Linux sys-admin
 - A "good" Hadoop cluster admin
 
-As a end user, your goal is to:
+As an end user, your goal is to:
 - Deploy TDP cluster
 - Evaluate the product
 - Report bugs and issues
@@ -94,4 +94,4 @@ As a sandbox end user, your goal is to:
 - Deploy a TDP cluster locally
 - Evaluate the product
 
-In 1 sentence: You setup TDP locally and evaluate it
+In 1 sentence: You spend one hour and understand what TDP is :)
