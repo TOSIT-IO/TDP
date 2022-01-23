@@ -15,7 +15,7 @@ You can participate in many ways to TDP, depending on your needs/skills/hardware
 ## TDP Core Developer
 
 First important thing:
-Every core development team has it's own build infrastructure.\
+Every core development team has it's own build infrastructure.
 
 Hardware requirements:
 - Kubernetes cluster
@@ -63,7 +63,7 @@ As cluster admin, your goal is to:
 
 In 1 sentence: You use TDP tarballs to create cluster
 
-### TDP End User
+## TDP End User
 
 Hardware requirements:
 - Same as above (Cluster Admin)
@@ -79,7 +79,7 @@ As a end user, your goal is to:
 
 In 1 sentence: You setup TDP and use it
 
-### TDP Sandbox End User
+## TDP Sandbox End User
 
 Hardware requirements:
 - A Linux desktop with 32GB of RAM and internet access.
