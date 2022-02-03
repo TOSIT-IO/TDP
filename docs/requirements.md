@@ -252,11 +252,12 @@ The following packages are expected to be installed on all cluster nodes:
 - `krb5-workstation`
 - `rngd`
 - `ssh`
-- Python 2.7+/3.4+
+- `python 2.7+/3.5+`
 
 Extra packages for the Ansible host:
 
-- `ansible>=2.9`
+- `ansible >= 2.9`
+- `python 2.7+/3.5+`
 
 ### Java versions
 
