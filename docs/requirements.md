@@ -158,8 +158,8 @@ Supported file systems:
 - XFS
 
 ```
-mkfs -t ext4 -m 1 -O -T largefile \
-  sparse_super,dir_index,extent,has_journal \
+mkfs -t ext4 -m 1 -T largefile \
+  -O sparse_super,dir_index,extent,has_journal \
   /dev/sdb1
 ```
 
@@ -213,6 +213,7 @@ It is recommanded to create the users prior to installation in order to control 
 
 The compilation of TDP is done using a Docker image. The machine used for compilation requires:
 
+- `git`
 - `docker-ce`
 - `docker-ce-cli`
 - `containerd.io`
@@ -221,17 +222,17 @@ See [Install Docker Engine on RHEL](https://docs.docker.com/engine/install/rhel/
 
 The compilation node will need access to the TDP GitHub repositories:
 
-- TDP (Docker image): [https://github.com/TOSIT-FR/TDP](https://github.com/TOSIT-FR/TDP)
-- Hadoop: [https://github.com/TOSIT-FR/hadoop](https://github.com/TOSIT-FR/hadoop)
-- Hive: [https://github.com/TOSIT-FR/hive](https://github.com/TOSIT-FR/hive)
-- Tez: [https://github.com/TOSIT-FR/tez](https://github.com/TOSIT-FR/tez)
-- Spark: [https://github.com/TOSIT-FR/spark](https://github.com/TOSIT-FR/spark)
-- Ranger: [https://github.com/TOSIT-FR/ranger](https://github.com/TOSIT-FR/ranger)
-- Oozie: [https://github.com/TOSIT-FR/oozie](https://github.com/TOSIT-FR/oozie)
-- HBase: [https://github.com/TOSIT-FR/hbase](https://github.com/TOSIT-FR/hbase)
-- Phoenix: [https://github.com/TOSIT-FR/phoenix](https://github.com/TOSIT-FR/phoenix)
-- Phoenix Query Server: [https://github.com/TOSIT-FR/phoenix-queryserver](https://github.com/TOSIT-FR/phoenix-queryserver)
-- Knox: [https://github.com/TOSIT-FR/knox](https://github.com/TOSIT-FR/knox)
+- TDP (Docker image): [https://github.com/TOSIT-IO/TDP](https://github.com/TOSIT-IO/TDP)
+- Hadoop: [https://github.com/TOSIT-IO/hadoop](https://github.com/TOSIT-IO/hadoop)
+- Hive: [https://github.com/TOSIT-IO/hive](https://github.com/TOSIT-IO/hive)
+- Tez: [https://github.com/TOSIT-IO/tez](https://github.com/TOSIT-IO/tez)
+- Spark: [https://github.com/TOSIT-IO/spark](https://github.com/TOSIT-IO/spark)
+- Ranger: [https://github.com/TOSIT-IO/ranger](https://github.com/TOSIT-IO/ranger)
+- Oozie: [https://github.com/TOSIT-IO/oozie](https://github.com/TOSIT-IO/oozie)
+- HBase: [https://github.com/TOSIT-IO/hbase](https://github.com/TOSIT-IO/hbase)
+- Phoenix: [https://github.com/TOSIT-IO/phoenix](https://github.com/TOSIT-IO/phoenix)
+- Phoenix Query Server: [https://github.com/TOSIT-IO/phoenix-queryserver](https://github.com/TOSIT-IO/phoenix-queryserver)
+- Knox: [https://github.com/TOSIT-IO/knox](https://github.com/TOSIT-IO/knox)
 
 Access to the official Apache ZooKeeper repo is also needed to download release 3.4.6: [https://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz](https://archive.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz)
 
@@ -250,9 +251,10 @@ The following packages are expected to be installed on all cluster nodes:
 - `ntp` or `chrony` enabled
 - OpenSSL (v1.01, build 16 or later)
 - `krb5-workstation`
-- `rngd`
+- `rng-tools`
 - `ssh`
 - `python 2.7+/3.5+`
+- `bind-utils`
 
 Extra packages for the Ansible host:
 
@@ -298,7 +300,7 @@ For Hive, Oozie and Ranger, the following databases are supported:
 
 ### Ansible node
 
-The Ansible roles used to deploy TDP are available in the repository [https://github.com/TOSIT-FR/ansible-tdp-roles](https://github.com/TOSIT-FR/ansible-tdp-roles).
+The Ansible roles used to deploy TDP are available in the repository [https://github.com/TOSIT-IO/ansible-tdp-roles](https://github.com/TOSIT-IO/ansible-tdp-roles).
 
 ## Security
 
