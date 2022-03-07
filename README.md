@@ -2,14 +2,14 @@
 
 ## Tosit Data Platform Release TDP-0.1.0 components version
 
-| Component          | Version       | Apache Git branch |  TDP Git Branch    |
-| -------------------|---------------|-------------------|--------------------|
-| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |
-| Apache Hadoop      | 3.1.1         | rel/release-3.1.1 |  branch-3.1.1-TDP  |
-| Apache Hive        | 3.1.3         | branch-3.1        |  branch-3.1-TDP    |
-| Apache Hive 1      | 1.2.3         | branch-1.2        |  branch-1.2-TDP    |
-| Apache Tez         | 0.9.1         | branch-0.9.1      |  branch-0.9.1-TDP  |
-| Apache Spark       | 2.3.5         | branch-2.3        |  branch-2.3-TDP    |
+| Component          | Version       | Apache Git branch |  TDP Git Branch    |  TDP commits  |
+| -------------------|---------------|-------------------|--------------------|---------------|
+| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |               |
+| Apache Hadoop      | 3.1.1         | [rel/release-3.1.1](https://github.com/apache/hadoop/commits/branch-3.1.1) |  [branch-3.1.1-TDP](https://github.com/TOSIT-IO/hadoop/commits/branch-3.1.1-TDP)  |  [compare](https://github.com/TOSIT-IO/hadoop/compare/branch-3.1.1...branch-3.1.1-TDP) |
+| Apache Hive        | 3.1.3         | [branch-3.1](https://github.com/apache/hive/commits/branch-3.1)            |  [branch-3.1-TDP](https://github.com/TOSIT-IO/hive/commits/branch-3.1-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-3.1...branch-3.1-TDP)       |
+| Apache Hive 1      | 1.2.3         | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            |  [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
+| Apache Tez         | 0.9.1         | [branch-0.9.1](https://github.com/apache/tez/commits/branch-0.9.1)         |  [branch-0.9.1-TDP](https://github.com/TOSIT-IO/tez/commits/branch-0.9.1-TDP)     |  [compare](https://github.com/TOSIT-IO/tez/compare/branch-0.9.1...branch-0.9.1-TDP)    |
+| Apache Spark       | 2.3.5         | [branch-2.3](https://github.com/apache/spark/commits/branch-2.3)           |  [branch-2.3-TDP](https://github.com/TOSIT-IO/spark/commits/branch-2.3-TDP)     |  [compare](https://github.com/TOSIT-IO/spark/compare/branch-2.3...branch-2.3-TDP) |
 | Apache Ranger      | 2.0.1         | ranger-1.2        |  ranger-2.0-TDP    |
 | Apache Oozie       | 5.3.0         | master            |  master-tdp        |
 
