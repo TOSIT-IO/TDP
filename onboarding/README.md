@@ -1,6 +1,6 @@
-# Tosit Data Platform
+# Trunk Data Platform
 
-## Tosit Data Platform - Onboarding
+## Trunk Data Platform - Onboarding
 
 We welcome everyone!\
 You can participate in many ways to TDP, depending on your needs/skills/hardware.

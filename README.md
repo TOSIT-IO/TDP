@@ -1,21 +1,23 @@
-# Tosit Data Platform
+# Trunk Data Platform
 
-## Tosit Data Platform Release TDP-0.1.0 components version
+## Trunk Data Platform Release TDP-0.1.0 components version
 
 | Component          | Version       | Apache Git branch |  TDP Git Branch    |  TDP commits  |
 | -------------------|---------------|-------------------|--------------------|---------------|
-| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |               |
+| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |    X.X.X         |
 | Apache Hadoop      | 3.1.1         | [rel/release-3.1.1](https://github.com/apache/hadoop/commits/branch-3.1.1) |  [branch-3.1.1-TDP](https://github.com/TOSIT-IO/hadoop/commits/branch-3.1.1-TDP)  |  [compare](https://github.com/TOSIT-IO/hadoop/compare/branch-3.1.1...branch-3.1.1-TDP) |
 | Apache Hive        | 3.1.3         | [branch-3.1](https://github.com/apache/hive/commits/branch-3.1)            |  [branch-3.1-TDP](https://github.com/TOSIT-IO/hive/commits/branch-3.1-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-3.1...branch-3.1-TDP)       |
 | Apache Hive 1      | 1.2.3         | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            |  [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
 | Apache Tez         | 0.9.1         | [branch-0.9.1](https://github.com/apache/tez/commits/branch-0.9.1)         |  [branch-0.9.1-TDP](https://github.com/TOSIT-IO/tez/commits/branch-0.9.1-TDP)     |  [compare](https://github.com/TOSIT-IO/tez/compare/branch-0.9.1...branch-0.9.1-TDP)    |
 | Apache Spark       | 2.3.5         | [branch-2.3](https://github.com/apache/spark/commits/branch-2.3)           |  [branch-2.3-TDP](https://github.com/TOSIT-IO/spark/commits/branch-2.3-TDP)     |  [compare](https://github.com/TOSIT-IO/spark/compare/branch-2.3...branch-2.3-TDP) |
-| Apache Ranger      | 2.0.1         | ranger-1.2        |  ranger-2.0-TDP    |
-| Apache Oozie       | 5.3.0         | master            |  master-tdp        |
+| Apache Ranger      | 2.0.1         | [ranger-2.0](https://github.com/TOSIT-IO/ranger/tree/ranger-2.0)        |  [ranger-2.0-TDP](https://github.com/TOSIT-IO/ranger/tree/ranger-2.0-TDP)    |  [compare](https://github.com/TOSIT-IO/ranger/compare/ranger-2.0...ranger-2.0-TDP)    
+| Apache HBase       | 2.1.10        |  [branch-2.1](https://github.com/TOSIT-IO/hbase/commits/branch-2.1)      |   [branch-2.1-TDP](https://github.com/TOSIT-IO/hbase/commits/branch-2.1-TDP)  |  [compare](https://github.com/TOSIT-IO/hbase/compare/branch-2.1...branch-2.1-TDP)
+| Apache Phoenix     | 5.1.3         |  [5.1](https://github.com/TOSIT-IO/phoenix/commits/5.1)            |   [5.1-TDP](https://github.com/TOSIT-IO/phoenix/commits/5.1-TDP)              |  [compare](https://github.com/TOSIT-IO/phoenix/compare/5.1...5.1-TDP)
+| Apache Knox   | 1.6.1 |   [v1.6.1](https://github.com/TOSIT-IO/knox/commits/v1.6.1)  |   [v1.6.1-TDP](https://github.com/TOSIT-IO/knox/commits/v1.6.1-TDP)  |   [compare](https://github.com/TOSIT-IO/knox/compare/v1.6.1...v1.6.1-TDP)
 
-Versions are based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/hdp_relnotes.html).
+Versions are approximately based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/hdp_relnotes.html).
 
-**Note**: X means that the Apache foundation maintains a branch with this specific minor version of the component on which are backported fixes and features. We will be using these branches as much as possible if they are maintained and compatible.
+**Note**: For some projects, the Apache foundation maintains sometimes a branch with this the components on which are backported fixes and features. We will be using these branches as much as possible if they are maintained and compatible.
 
 ## TDP Components release
 
