@@ -125,7 +125,10 @@ ENV PATH "${PATH}:/opt/protobuf/bin"
 # Install pylint at fixed version (2.0.0 removed python2 support)
 # https://github.com/PyCQA/pylint/issues/2294
 ####
+
 RUN pip2 install \
+    setuptools-scm==5.0.0 \
+    lazy-object-proxy==1.6.0 \
     configparser==4.0.2 \
     pylint==1.9.2
 
