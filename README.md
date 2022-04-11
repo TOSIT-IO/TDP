@@ -1,5 +1,7 @@
 # Trunk Data Platform
 
+![](static/tdp_logo.png)
+
 ## Trunk Data Platform Release TDP-0.1.0 components version
 
 | Component          | Version       | Apache Git branch |  TDP Git Branch    |  TDP commits  |
