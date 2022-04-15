@@ -70,4 +70,22 @@ You can start a local building environment with the `bin/start-build-env.sh` scr
 **Note:** See `build-env/README.md` for details.
 
 To build TDP component binaries, attach to the running `tdp-builder-<user>` container and `git clone` the TDP component repository to it. Each TDP component's `tdp/README.md` has custom instructions to launch the build process.
-Assign a directory path to the `TDP_HOME` variable in the `bin/start-build-env.sh` to control the local path of built TDP binaries. 
+Assign a directory path to the `TDP_HOME` variable in the `bin/start-build-env.sh` to control the local path of built TDP binaries.
+
+## TDP component build order
+
+Some TDP components are dependant on other TDP components. An order of compilation which meets TDP dependency criteria is:
+
+  1. hadoop (branch-3.1.1-TDP)
+  2. tez (branch-0.9.1-TDP)
+  3. hive (branch-1.2)
+  4. spark (branch-2.3-TDP)
+  5. hive (branch-3.1-TDP)
+  6. hbase (branch-2.1-TDP)
+  7. phoenix-queryserver (6.0.0-TDP)
+  8. phoenix (5.1-TDP)
+  9. knox (v1.6.1-TDP)
+  11. ranger (ranger-2.0-TDP)
+
+Ensure TDP components are installed in your local maven repository before moving on to the next step.
+
