@@ -78,7 +78,7 @@ Some TDP components are dependant on other TDP components. An order of compilati
 
   1. hadoop (branch-3.1.1-TDP)
   2. tez (branch-0.9.1-TDP)
-  3. hive (branch-1.2)
+  3. hive (branch-1.2-TDP)
   4. spark (branch-2.3-TDP)
   5. hive (branch-3.1-TDP)
   6. hbase (branch-2.1-TDP)
