@@ -36,53 +36,55 @@ ENV DEBCONF_TERSE true
 # hadolint ignore=DL3008
 RUN apt-get -q update \
     && apt-get -q install -y --no-install-recommends \
-        ant \
-        apt-utils \
-        bats \
-        build-essential \
-        bzip2 \
-        clang \
-        cmake \
-        curl \
-        doxygen \
-        findbugs \
-        fuse \
-        g++ \
-        gcc \
-        git \
-        gnupg-agent \
-        libbcprov-java \
-        libbz2-dev \
-        libcurl4-openssl-dev \
-        libfuse-dev \
-        libprotobuf-dev \
-        libprotoc-dev \
-        libsasl2-dev \
-        libsnappy-dev \
-        libssl-dev \
-        libtool \
-        libzstd1-dev \
-        locales \
-        make \
-        maven \
-        openjdk-11-jdk \
-        openjdk-8-jdk \
-        pinentry-curses \
-        pkg-config \
-        python \
-        python2.7 \
-        python-pip \
-        python-pkg-resources \
-        python-setuptools \
-        python-wheel \
-        r-base \
-        r-base-dev \
-        rsync \
-        shellcheck \
-        software-properties-common \
-        sudo \
-        valgrind \
-        zlib1g-dev \
+    ant \
+    apt-utils \
+    bats \
+    build-essential \
+    bzip2 \
+    clang \
+    cmake \
+    curl \
+    doxygen \
+    findbugs \
+    fuse \
+    g++ \
+    gcc \
+    git \
+    gnupg-agent \
+    libbcprov-java \
+    libbz2-dev \
+    libcurl4-openssl-dev \
+    libfuse-dev \
+    libprotobuf-dev \
+    libprotoc-dev \
+    libsasl2-dev \
+    libsnappy-dev \
+    libssl-dev \
+    libtool \
+    libzstd1-dev \
+    locales \
+    make \
+    maven \
+    openjdk-11-jdk \
+    openjdk-8-jdk \
+    pinentry-curses \
+    pkg-config \
+    python \
+    python2.7 \
+    python-pip \
+    python3-pip \
+    python3-setuptools \
+    python-pkg-resources \
+    python-setuptools \
+    python-wheel \
+    r-base \
+    r-base-dev \
+    rsync \
+    shellcheck \
+    software-properties-common \
+    sudo \
+    valgrind \
+    zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -114,8 +116,8 @@ RUN mkdir -p /opt/boost-library \
 ######
 RUN mkdir -p /opt/protobuf-src && \
     curl -L -s -S \
-      https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz \
-      -o /opt/protobuf.tar.gz && \
+    https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz \
+    -o /opt/protobuf.tar.gz && \
     tar xzf /opt/protobuf.tar.gz --strip-components 1 -C /opt/protobuf-src
 RUN cd /opt/protobuf-src && ./configure --prefix=/opt/protobuf && make install
 ENV PROTOBUF_HOME /opt/protobuf
@@ -136,6 +138,19 @@ RUN pip2 install \
 # Install dateutil.parser
 ####
 RUN pip2 install python-dateutil==2.7.3
+
+
+####
+# Upgrade pip3
+####
+RUN python3 -m pip install --upgrade pip
+
+####
+# Install pandas and pyarrow for Spark 3
+####
+RUN python3 -m pip install numpy==1.19.5 \
+    pandas==1.0.5 \
+    pyarrow==4.0.1
 
 ###
 # Install node.js 10.x for web UI framework (4.2.6 ships with Xenial)
@@ -161,11 +176,11 @@ RUN curl -s -S https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 # Install hadolint
 ####
 RUN curl -L -s -S \
-        https://github.com/hadolint/hadolint/releases/download/v1.11.1/hadolint-Linux-x86_64 \
-        -o /bin/hadolint \
-   && chmod a+rx /bin/hadolint \
-   && shasum -a 512 /bin/hadolint | \
-        awk '$1!="734e37c1f6619cbbd86b9b249e69c9af8ee1ea87a2b1ff71dccda412e9dac35e63425225a95d71572091a3f0a11e9a04c2fc25d9e91b840530c26af32b9891ca" {exit(1)}'
+    https://github.com/hadolint/hadolint/releases/download/v1.11.1/hadolint-Linux-x86_64 \
+    -o /bin/hadolint \
+    && chmod a+rx /bin/hadolint \
+    && shasum -a 512 /bin/hadolint | \
+    awk '$1!="734e37c1f6619cbbd86b9b249e69c9af8ee1ea87a2b1ff71dccda412e9dac35e63425225a95d71572091a3f0a11e9a04c2fc25d9e91b840530c26af32b9891ca" {exit(1)}'
 
 ######
 # Intel ISA-L 2.29.0
@@ -176,8 +191,8 @@ RUN mkdir -p /opt/isa-l-src \
     && apt-get install -y --no-install-recommends automake yasm \
     && apt-get clean \
     && curl -L -s -S \
-      https://github.com/intel/isa-l/archive/v2.29.0.tar.gz \
-      -o /opt/isa-l.tar.gz \
+    https://github.com/intel/isa-l/archive/v2.29.0.tar.gz \
+    -o /opt/isa-l.tar.gz \
     && tar xzf /opt/isa-l.tar.gz --strip-components 1 -C /opt/isa-l-src \
     && cd /opt/isa-l-src \
     && ./autogen.sh \
