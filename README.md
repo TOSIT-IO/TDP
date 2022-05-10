@@ -4,19 +4,20 @@
 
 ## Trunk Data Platform Release TDP-0.1.0 components version
 
-| Component          | Version       | Apache Git branch |  TDP Git Branch    |  TDP commits  |
-| -------------------|---------------|-------------------|--------------------|---------------|
-| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |    X.X.X         |
-| Apache Hadoop      | 3.1.1         | [rel/release-3.1.1](https://github.com/apache/hadoop/commits/branch-3.1.1) |  [branch-3.1.1-TDP](https://github.com/TOSIT-IO/hadoop/commits/branch-3.1.1-TDP)  |  [compare](https://github.com/TOSIT-IO/hadoop/compare/branch-3.1.1...branch-3.1.1-TDP) |
-| Apache Hive        | 3.1.3         | [branch-3.1](https://github.com/apache/hive/commits/branch-3.1)            |  [branch-3.1-TDP](https://github.com/TOSIT-IO/hive/commits/branch-3.1-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-3.1...branch-3.1-TDP)       |
-| Apache Hive 1      | 1.2.3         | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            |  [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
-| Apache Tez         | 0.9.1         | [branch-0.9.1](https://github.com/apache/tez/commits/branch-0.9.1)         |  [branch-0.9.1-TDP](https://github.com/TOSIT-IO/tez/commits/branch-0.9.1-TDP)     |  [compare](https://github.com/TOSIT-IO/tez/compare/branch-0.9.1...branch-0.9.1-TDP)    |
-| Apache Spark       | 2.3.5         | [branch-2.3](https://github.com/apache/spark/commits/branch-2.3)           |  [branch-2.3-TDP](https://github.com/TOSIT-IO/spark/commits/branch-2.3-TDP)     |  [compare](https://github.com/TOSIT-IO/spark/compare/branch-2.3...branch-2.3-TDP) |
-| Apache Ranger      | 2.0.1         | [ranger-2.0](https://github.com/TOSIT-IO/ranger/tree/ranger-2.0)        |  [ranger-2.0-TDP](https://github.com/TOSIT-IO/ranger/tree/ranger-2.0-TDP)    |  [compare](https://github.com/TOSIT-IO/ranger/compare/ranger-2.0...ranger-2.0-TDP)    
-| Apache HBase       | 2.1.10        |  [branch-2.1](https://github.com/TOSIT-IO/hbase/commits/branch-2.1)      |   [branch-2.1-TDP](https://github.com/TOSIT-IO/hbase/commits/branch-2.1-TDP)  |  [compare](https://github.com/TOSIT-IO/hbase/compare/branch-2.1...branch-2.1-TDP)
-| Apache Phoenix     | 5.1.3         |  [5.1](https://github.com/TOSIT-IO/phoenix/commits/5.1)            |   [5.1-TDP](https://github.com/TOSIT-IO/phoenix/commits/5.1-TDP)              |  [compare](https://github.com/TOSIT-IO/phoenix/compare/5.1...5.1-TDP)
-| Apache Phoenix Query Server     | 6.0.0         |  [6.0.0](https://github.com/TOSIT-IO/phoenix-queryserver/commits/6.0.0)            |   [6.0.0-TDP](https://github.com/TOSIT-IO/phoenix-queryserver/commits/6.0.0-TDP)              |  [compare](https://github.com/TOSIT-IO/phoenix-queryserver/compare/6.0.0...6.0.0-TDP)
-| Apache Knox   | 1.6.1 |   [v1.6.1](https://github.com/TOSIT-IO/knox/commits/v1.6.1)  |   [v1.6.1-TDP](https://github.com/TOSIT-IO/knox/commits/v1.6.1-TDP)  |   [compare](https://github.com/TOSIT-IO/knox/compare/v1.6.1...v1.6.1-TDP)
+| Component                   | Version | Apache Git branch                                                          | TDP Git Branch                                                                  | TDP commits                                                                           |
+| --------------------------- | ------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Apache ZooKeeper            | 3.4.6   | release-3.4.6                                                              | XXX                                                                             | X.X.X                                                                                 |
+| Apache Hadoop               | 3.1.1   | [rel/release-3.1.1](https://github.com/apache/hadoop/commits/branch-3.1.1) | [branch-3.1.1-TDP](https://github.com/TOSIT-IO/hadoop/commits/branch-3.1.1-TDP) | [compare](https://github.com/TOSIT-IO/hadoop/compare/branch-3.1.1...branch-3.1.1-TDP) |
+| Apache Hive                 | 3.1.3   | [branch-3.1](https://github.com/apache/hive/commits/branch-3.1)            | [branch-3.1-TDP](https://github.com/TOSIT-IO/hive/commits/branch-3.1-TDP)       | [compare](https://github.com/TOSIT-IO/hive/compare/branch-3.1...branch-3.1-TDP)       |
+| Apache Hive 1               | 1.2.3   | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            | [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)       | [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
+| Apache Tez                  | 0.9.1   | [branch-0.9.1](https://github.com/apache/tez/commits/branch-0.9.1)         | [branch-0.9.1-TDP](https://github.com/TOSIT-IO/tez/commits/branch-0.9.1-TDP)    | [compare](https://github.com/TOSIT-IO/tez/compare/branch-0.9.1...branch-0.9.1-TDP)    |
+| Apache Spark                | 2.3.5   | [branch-2.3](https://github.com/apache/spark/commits/branch-2.3)           | [branch-2.3-TDP](https://github.com/TOSIT-IO/spark/commits/branch-2.3-TDP)      | [compare](https://github.com/TOSIT-IO/spark/compare/branch-2.3...branch-2.3-TDP)      |
+| Apache Spark 3              | 3.2.2   | [branch-3.2](https://github.com/apache/spark/commits/branch-3.2)           | [branch-3.2-TDP](https://github.com/TOSIT-IO/spark/commits/branch-3.2-TDP)      | [compare](https://github.com/TOSIT-IO/spark/compare/branch-3.2...branch-3.2-TDP)      |
+| Apache Ranger               | 2.0.1   | [ranger-2.0](https://github.com/TOSIT-IO/ranger/tree/ranger-2.0)           | [ranger-2.0-TDP](https://github.com/TOSIT-IO/ranger/tree/ranger-2.0-TDP)        | [compare](https://github.com/TOSIT-IO/ranger/compare/ranger-2.0...ranger-2.0-TDP)     |
+| Apache HBase                | 2.1.10  | [branch-2.1](https://github.com/TOSIT-IO/hbase/commits/branch-2.1)         | [branch-2.1-TDP](https://github.com/TOSIT-IO/hbase/commits/branch-2.1-TDP)      | [compare](https://github.com/TOSIT-IO/hbase/compare/branch-2.1...branch-2.1-TDP)      |
+| Apache Phoenix              | 5.1.3   | [5.1](https://github.com/TOSIT-IO/phoenix/commits/5.1)                     | [5.1-TDP](https://github.com/TOSIT-IO/phoenix/commits/5.1-TDP)                  | [compare](https://github.com/TOSIT-IO/phoenix/compare/5.1...5.1-TDP)                  |
+| Apache Phoenix Query Server | 6.0.0   | [6.0.0](https://github.com/TOSIT-IO/phoenix-queryserver/commits/6.0.0)     | [6.0.0-TDP](https://github.com/TOSIT-IO/phoenix-queryserver/commits/6.0.0-TDP)  | [compare](https://github.com/TOSIT-IO/phoenix-queryserver/compare/6.0.0...6.0.0-TDP)  |
+| Apache Knox                 | 1.6.1   | [v1.6.1](https://github.com/TOSIT-IO/knox/commits/v1.6.1)                  | [v1.6.1-TDP](https://github.com/TOSIT-IO/knox/commits/v1.6.1-TDP)               | [compare](https://github.com/TOSIT-IO/knox/compare/v1.6.1...v1.6.1-TDP)               |
 
 Versions are approximately based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/hdp_relnotes.html).
 
@@ -40,6 +41,7 @@ Kubernetes was installed on Ubuntu 20.04 Virtual Machines with [kubeadm](https:/
 ### Jenkins
 
 Jenkins is used to trigger the builds which is the same process for every component of the stack:
+
 - Git clone the sources
 - Build the project
 - Run the unit tests
@@ -50,6 +52,7 @@ Jenkins was installed on the Kubernetes cluster with the official [jenkinsci Hel
 ### Nexus / Docker registry
 
 The building environment needs multiple registries:
+
 - Maven to host the compiled Jars
 - Docker to host the images that we use to build the projects
 - File registry to host the .tar.gz files with the binaries and jars for every compiled projects.
@@ -60,9 +63,10 @@ Nexus OSS was install on the Kubernetes cluster with the [helm chart](https://gi
 
 ## Local build environment
 
-It is possible to run a local environment for  building / small scale testing.
+It is possible to run a local environment for building / small scale testing.
 
 Prerequisite:
+
 - Docker installed and available to your local user
 
 You can start a local building environment with the `bin/start-build-env.sh` script.
@@ -70,4 +74,4 @@ You can start a local building environment with the `bin/start-build-env.sh` scr
 **Note:** See `build-env/README.md` for details.
 
 To build TDP component binaries, attach to the running `tdp-builder-<user>` container and `git clone` the TDP component repository to it. Each TDP component's `tdp/README.md` has custom instructions to launch the build process.
-Assign a directory path to the `TDP_HOME` variable in the `bin/start-build-env.sh` to control the local path of built TDP binaries. 
+Assign a directory path to the `TDP_HOME` variable in the `bin/start-build-env.sh` to control the local path of built TDP binaries.
