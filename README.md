@@ -6,7 +6,8 @@
 
 | Component          | Version       | Apache Git branch |  TDP Git Branch    |  TDP commits  |
 | -------------------|---------------|-------------------|--------------------|---------------|
-| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |    X.X.X         |
+| Apache ZooKeeper   | 3.4.6         | release-3.4.6     |  XXX               |    X.X.X      |
+| Apache Nifi        | 1.16.1        | [release-1.16.1](https://github.com/Apache/NiFi/tree/rel/nifi-1.16.1)    |  XXX               |    X.X.X      |
 | Apache Hadoop      | 3.1.1         | [rel/release-3.1.1](https://github.com/apache/hadoop/commits/branch-3.1.1) |  [branch-3.1.1-TDP](https://github.com/TOSIT-IO/hadoop/commits/branch-3.1.1-TDP)  |  [compare](https://github.com/TOSIT-IO/hadoop/compare/branch-3.1.1...branch-3.1.1-TDP) |
 | Apache Hive        | 3.1.3         | [branch-3.1](https://github.com/apache/hive/commits/branch-3.1)            |  [branch-3.1-TDP](https://github.com/TOSIT-IO/hive/commits/branch-3.1-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-3.1...branch-3.1-TDP)       |
 | Apache Hive 1      | 1.2.3         | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            |  [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)      |  [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
