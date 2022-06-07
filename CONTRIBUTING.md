@@ -1,13 +1,13 @@
 
 # Contributing to TDP
 
-TDP is an open source project hosted on [GitHub](https://github.com/TOSIT-IO/TDP) administered by the [TOSIT association](https://tosit.fr/). It is release under the [Apache License 2.0](https://github.com/TOSIT-IO/TDP/blob/main/LICENSE).
+TDP is an open source project hosted on [GitHub](https://github.com/TOSIT-IO/TDP) administered by the [TOSIT association](https://tosit.fr/). It is released under the [Apache License 2.0](https://github.com/TOSIT-IO/TDP/blob/main/LICENSE).
 
 We appreciate your interest and efforts to contribute to TDP.
 
 ## How to help
 
-Contributions go far beyond pull requests and commits. we are thrilled to receive a variety of other contributions including the following:
+Contributions go far beyond pull requests and commits. We would be thrilled to receive a variety of other contributions including the following:
 
 - Write and publish your own actions
 - Write articles and blog posts, create a tutorial, and spread the words
@@ -25,7 +25,7 @@ There is currently no channel dedicated to discussing TDP. For now, you may simp
 
 ### Requesting changes
 
-Expression your opinions and desires is encouraged to influence the work on TDP. You can submit new issues on GitHub and upvote existing features.
+Expressing your opinions and desires is encouraged to influence the work on TDP. You can submit new issues on GitHub and upvote existing features.
 
 ### Bugs
 
@@ -33,7 +33,7 @@ Expression your opinions and desires is encouraged to influence the work on TDP.
 
 TDP is using GitHub issues to manage public bugs. We keep a close eye on this and try to make it clear when we have an internal fix in progress.
 
-Before filing a new issue, try to ensure your problem does not already exist.
+Before filing a new issue, try to ensure your problem is not already reported.
 
 #### Reporting New Issues
 
@@ -113,7 +113,7 @@ If you’re only fixing a bug, it’s fine to submit a pull request right away b
 ### Conventional Commits
 
 
-The Nikita Git repository follows the Conventional Commits specification that provides an easy set of rules for creating an explicit commit history.
+The TDP git repositories follows the Conventional Commits specification that provides an easy set of rules for creating an explicit commit history.
 
 Here's how a commit message looks like:
 
