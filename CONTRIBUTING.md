@@ -53,21 +53,16 @@ This project, and everyone participating in it, are governed by the TDP code of 
 
 ...to be discussed...
 
-### Contributor License Agreement (CLA)
+### Copyright License Agreement
 
 #### Individual contribution
 
-You need to sign an Individual Contributor License Agreement (ICLA) to accept your pull request. You only need to do this once. If you submit a pull request for the first time, you can complete our CLA.
+As stated in our [PULL_REQUEST_TEMPLATE](https://github.com/TOSIT-IO/tdp-collection/blob/master/.github/PULL_REQUEST_TEMPLATE.md) on every repository, you must accept to:
 
-The document is downloadable from our website. In the future, we will look for a solution to automate the CLA signature such as [CLA bot](https://github.com/apps/cla-bot), which automatically ask you to sign before merging the pull request.
+- That your contribution is to be licenced under the Apache License Version 2.0, January 2004
+- To grant TOSIT a copyright license to use my contributions.
 
-<!-- See: https://www.apache.org/licenses/icla.pdf -->
-
-#### Company contribution
-
-If you make contributions to our repositories on behalf of your company, we will need a Corporate Contributor License Agreement (CCLA) signed. To do that, please get in touch with us.
-
-<!-- See: https://www.apache.org/licenses/cla-corporate.pdf -->
+This can performed by checking the boxes in the [PULL_REQUEST_TEMPLATE](https://github.com/TOSIT-IO/tdp-collection/blob/master/.github/PULL_REQUEST_TEMPLATE.md) while opening a Pull request.
 
 ## Development
 
@@ -113,7 +108,7 @@ If you’re only fixing a bug, it’s fine to submit a pull request right away b
 ### Conventional Commits
 
 
-The TDP git repositories follows the Conventional Commits specification that provides an easy set of rules for creating an explicit commit history.
+The TDP git repositories follows the [Conventional Commits](https://www.conventionalcommits.org/) specification that provides an easy set of rules for creating an explicit commit history.
 
 Here's how a commit message looks like:
 
@@ -127,4 +122,4 @@ Here's how a commit message looks like:
 
 The `<type>` message follows [the Angular convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) and must be one from the list: `build`, `chore`, `ci`, `docs`, `style`, `refactor`, `perf`, `test`. The `[optional scope]` message is associated to the directory name of [the available packages](https://github.com/adaltas/node-nikita/tree/master/packages). A scope is optional and is contained within parentheses, e.g., `feat(engine): ability to parse arrays`. Follow [the specification](https://www.conventionalcommits.org) to learn more about Conventional Commits.
 
-Commit messages are automatically validated, in case of any mistake the error message is prompted. Internally, we use [Husky](https://typicode.github.io/husky/) which plugs into Git by registering a hook to call [commitlint](https://commitlint.js.org/) to validate the format of the messages.
+Commit messages are automatically validated using a [GitHub Action](https://github.com/TOSIT-IO/tdp-collection/blob/master/.github/workflows/conventional-commits.yml), in case of any mistake the error message is prompted.
