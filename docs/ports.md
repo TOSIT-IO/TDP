@@ -293,6 +293,28 @@
   - Sources:
     - [Oozie installation guide](https://oozie.apache.org/docs/4.3.1/AG_Install.html)
 
+## Spark2
+
+- Driver port   
+  - Port: Random
+  - Protocol: HTTPS
+  - Property: `spark.driver.port`, `spark.port.maxRetries` and `spark.blockManager.port`
+  - External access: yes
+  - Sources
+    - [Spark firewall configuration](https://community.cloudera.com/t5/Support-Questions/Spark-Jobs-failing-firewall-issue/td-p/219169)
+    - [Spark2 configuration docs](https://spark.apache.org/docs/2.3.2/configuration.html)
+
+## Spark3
+
+- Driver port   
+  - Port: Random
+  - Protocol: HTTPS
+  - Property: `spark.driver.port`, `spark.port.maxRetries` and `spark.blockManager.port`
+  - External access: yes
+  - Sources
+    - [Spark firewall configuration](https://community.cloudera.com/t5/Support-Questions/Spark-Jobs-failing-firewall-issue/td-p/219169)
+    - [Spark3 configuration docs](https://spark.apache.org/docs/3.2.1/configuration.html)
+
 ## Knox
 
 - Gateway   
@@ -302,6 +324,7 @@
   - Property: `gateway.port`
   - External access: yes
   - [Source](https://github.com/TOSIT-FR/knox/blob/v1.0.0-TDP/gateway-server/src/main/resources/conf/gateway-default.xml)
+
 
 ## Additionnal resources
 
