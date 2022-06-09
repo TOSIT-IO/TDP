@@ -14,14 +14,14 @@
 ## HDFS
 
 - NameNode
-  - HTTPS service   
+  - HTTPS service
     The namenode secure HTTP server address and port. It provides access to the HDFS web UI.
     - Port: 9871
     - Protocol: HTTPS
     - Property: `dfs.namenode.https-address`
     - External access: yes
     - [Source](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
-  - RPC service   
+  - RPC service
     Main RPC port used by client to communicate with HDFS using a binary protocol. The port is embedded in the URI, eg `hdfs://nn1.domain.com:8020/`.
     - Port: 8020
     - Protocol: IPC
@@ -30,7 +30,7 @@
     - Sources:
       - [HDFS default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 - ZKFC
-  - RPC access   
+  - RPC access
     RPC port used by Zookeeper Failover Controller.
     - Port: 8019
     - Protocol: IPC
@@ -39,7 +39,7 @@
     - Sources:
       - [HDFS default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 - DataNode
-  - Secure data transfert   
+  - Secure data transfert
     The datanode server address and port for data transfer. The value depends on the usage of SASL to authenticate data transfer protocol instead of running the DataNode as root, learn more about [securing the DataNode](https://cwiki.apache.org/confluence/display/HADOOP/Secure+DataNode).
     - Port: 9866 (SASL based IPC, non-privileged port) or 1004 (privileged port) 
     - Protocol: IPC
@@ -49,7 +49,7 @@
       - [Privileged port](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-common/SecureMode.html)
       - [Non-privilege port](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
       - [HDFS-9427- not default to ephemeral ports](https://issues.apache.org/jira/browse/HDFS-9427)
-  - HTTPS service   
+  - HTTPS service
     The datanode secure HTTP server address and port. It is used to access the status, logs, etc, and file data operations when using [WebHDFS](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/WebHDFS.html) or [HttpFS](https://hadoop.apache.org/docs/r3.1.1/hadoop-hdfs-httpfs/index.html). The NameNode UI redirects the user to the DataNode server when browsing files.
     - Port: 9865
     - Protocol: HTTPS
@@ -57,7 +57,7 @@
     - External access: yes
     - Sources:
       - [HDFS default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
-  - RPC service   
+  - RPC service
     The DataNode RCP server address and port used for metadata information.
     - Port: 9867
     - Protocol: IPC
@@ -66,7 +66,7 @@
     - Sources:
       - [HDFS default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
       - [HDFS-9427 - not default to ephemeral ports](https://issues.apache.org/jira/browse/HDFS-9427)
-- JournalNode   
+- JournalNode
   - RPC server
     The JournalNode RPC server address and port.
     - Port: 8485
@@ -75,7 +75,7 @@
     - External access: no
     - Sources:
       [HDFS default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
-  - HTTPS server   
+  - HTTPS server
     The address and port the JournalNode HTTPS server listens on. If the port is 0 then the server will start on a free port.
     - Port: 8481
     - Protocol: HTTPS
@@ -86,7 +86,7 @@
 ## YARN
 
 - ResourceManager
-  - Ressource tracker   
+  - Ressource tracker
     This is used by the Node Manager to register/nodeHeartbeat/unregister with the ResourceManager.
     - Port: 8031
     - Protocol: IPC
@@ -94,7 +94,7 @@
     - External access: no
     - Sources:
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - RPC server   
+  - RPC server
     The address of the applications manager interface in the RM. It is used to submit jobs. In YARN non HA configuration `yarn.resourcemanager.address` uses port 8050. In YARN HA configuration, `yarn.resourcemanager.address` is redundant and instead `yarn.resourcemanager.address.{id}` is resolved and uses port 8032.
     - Port: 8032
     - Protocol: IPC
@@ -103,7 +103,7 @@
     - Sources:
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
       - [YARN HA port](https://community.cloudera.com/t5/Support-Questions/What-is-the-default-Yarn-resource-manager-port-Is-it-8032-or/td-p/138143)
-  - HTTPS server   
+  - HTTPS server
     The HTTPS adddress of the RM web UI application. It is used to monitor applications.
     - Port: 8090
     - Protocol: HTTPS
@@ -111,7 +111,7 @@
     - External access: yes
     - Sources:
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - Admin RPC server   
+  - Admin RPC server
     It is used by administrators and developers.
     - Port: 8033
     - Protocol: RPC
@@ -119,7 +119,7 @@
     - External access: yes
     - Sources:
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - Scheduler   
+  - Scheduler
     It is used by administrators and developers.
     - Port: 8030
     - Protocol: RPC
@@ -128,7 +128,7 @@
     - Sources
       - [YARN default configuration](https://github.com/TOSIT-FR/hadoop/blob/5b1fa3e1aabb6bd350bf5dbd4f4e49578d94738f/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml)
 - NodeManager
-  - Container Manager   
+  - Container Manager
     The address of the container manager in the NodeManager. Access is typically granted to admins, and Dev/Support teams.
     - Port: 0 (default for dynamic port allocation) or 45454 (static port by convention)
     - Protocol: RPC
@@ -136,7 +136,7 @@
     - External access: yes
     - Sources
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - Localizer   
+  - Localizer
     Address where the localizer IPC is. It is responsible for downloading and copying remote resources on the local filesystem.
     - Port: 8040
     - Protocol: RPC
@@ -144,7 +144,7 @@
     - External access: no
     - Sources
       [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - HTTPS server   
+  - HTTPS server
     WebUI server of the NodeManager for administrator and developers.
     - Port: 8044
     - Protocol: HTTPS
@@ -159,7 +159,7 @@
     - Property: `yarn.app.mapreduce.am.job.client.port-range`
     - External access: no
 - App Timeline Server
-  - RPC server   
+  - RPC server
     This address for the timeline server to start the RPC server. It addresses the storage and retrieval of application’s current and historic information in a generic fashion.
     - Port: 10200
     - Protocol: RPC
@@ -167,7 +167,7 @@
     - External access: yes
     - Sources
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - HTTPS server   
+  - HTTPS server
     The web UI of the timeline server.
     - Port: 8190
     - Protocol: RPC
@@ -178,14 +178,14 @@
 
 ## MapReduce Job History Server
 
-- Job History RPC server   
+- Job History RPC server
   Server where client applications submit MapReduce jobs, `{FQDN}:{PORT}`.
   - Port: 10020
   - Protocol: RPC
   - Property: `mapreduce.jobhistory.address`
   - External access: yes
   - [MapReduce default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
-- Job History WebUI   
+- Job History WebUI
   The MapReduce JobHistory Server Web UI, `{FQDN}:{PORT}`. It is used by administrators and developers.
   - Port: 19890
   - Protocol: HTTPS
@@ -193,7 +193,7 @@
   - External access: yes
   - Sources
     - [MapReduce default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
-- Shuffle Handler   
+- Shuffle Handler
   - Default port that the ShuffleHandler will run on. ShuffleHandler is a service run at the NodeManager to facilitate transfers of intermediate Map outputs to requesting Reducers.
   - Port: 13562
   - Protocol: RPC
@@ -201,7 +201,7 @@
   - External access: no
   - Sources
     - [MapReduce default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml)
-- RPC admin server   
+- RPC admin server
   The address of the History server admin interface.
   - Port: 10033
   - Protocol: RPC
@@ -212,7 +212,7 @@
 
 ## ZooKeeper
 
-- Client connections   
+- Client connections
   Server dedicated to client connections.
   - Port: 2181 (default by convention)
   - Protocol: RPC
@@ -220,7 +220,7 @@
   - External access: yes
   - Sources:
     - [ZooKeeper Administrator's Guide](https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_configuration)
-- Leader server   
+- Leader server
   Peers use the former port to connect to other peers, for example, to agree upon the order of updates. More specifically, a ZooKeeper server uses this port to connect followers to the leader.
   - Port: 2888 (default by convention)
   - Protocol: RPC
@@ -228,7 +228,7 @@
   - External access: no
   - Sources
     - [ZooKeeper Administrator's Guide](https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_configuration)
-- Leader election connections   
+- Leader election connections
   Server connections used during the leader election phase.
   - Port: 3888  (default by convention)
   - Protocol: RPC
@@ -241,7 +241,7 @@
 
 - [Hive Metastore](https://cwiki.apache.org/confluence/display/hive/design#Design-Metastore)   
   Store metadata information to expose data storage into a relational model.
-  - Port: 9083 
+  - Port: 9083
   - Protocol: RPC
   - Property: `hive.metastore.uris` and `hive.metastore.port`
   - External access: yes
@@ -265,7 +265,7 @@
 
 ## Ranger
 
-- Policy Manager   
+- Policy Manager
   Port for Ranger secured admin web UI.
   - Port: 6182
   - Protocol: HTTPS
@@ -284,7 +284,7 @@
   - External access: yes
   - Sources
     - [Oozie installation guide](https://oozie.apache.org/docs/4.3.1/AG_Install.html)
-- Admin   
+- Admin
   The admin port Oozie server runs. It may be opened externally if job submissions are accepted from outside the cluster.
   - Port: 11001
   - Protocol: HTTPS
@@ -327,7 +327,7 @@
 
 ## Knox
 
-- Gateway   
+- Gateway
   The port of Knox main gateway to internal cluster services.
   - Port: 8443
   - Protocol: HTTPS
