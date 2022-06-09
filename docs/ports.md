@@ -152,8 +152,8 @@
     - External access: yes
     - Sources
       - [YARN default configuration](https://hadoop.apache.org/docs/r3.1.1/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
-  - ApplicationMaster
-    Ephemeral HTTPS ports are opened by each ApplicationMaster. The `tdp-collection` default port range is unrestricted but is parameterized in the `tdp_var_defaults/hadoop/hadoop.yml` inventory file under the `yarn.app.mapreduce.am.job.client.port-range` property. Ports within this range can be accessible from outside the cluster if the permitted by the network firewall. *Note that this only restricts the port range used for mapreduce jobs, not spark*.
+  - MapReduce ApplicationMaster
+    Ephemeral HTTPS ports are opened by each ApplicationMaster. The `tdp-collection` default port range is unrestricted but is parameterized in the `tdp_var_defaults/hadoop/hadoop.yml` inventory file under the `yarn.app.mapreduce.am.job.client.port-range` property. Ports within this range can be accessible from outside the cluster if the permitted by the network firewall. *Note that this only restricts the port range used for mapreduce jobs. In the case of Spark, refer to the Spark Driver port documentation, such as the spark.driver.port property*.
     - Port: Random
     - Protocol: HTTP
     - Property: `yarn.app.mapreduce.am.job.client.port-range`
