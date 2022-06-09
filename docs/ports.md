@@ -295,10 +295,15 @@
 
 ## Spark2
 
-- Driver port   
+- Driver port
+  If the `spark.driver.port` fails, it is incremented by 1 and retried up to `spark.port.maxRetries` times.
+  `spark.blockManager.port` must be larger than `spark.driver.port` + `sparkspark.sport.maxRetries`
   - Port: Random
   - Protocol: HTTPS
-  - Property: `spark.driver.port`, `spark.port.maxRetries` and `spark.blockManager.port`
+  - Properties:
+    - `spark.driver.port`
+    - `spark.port.maxRetries`
+    - `spark.blockManager.port`
   - External access: yes
   - Sources
     - [Spark firewall configuration](https://community.cloudera.com/t5/Support-Questions/Spark-Jobs-failing-firewall-issue/td-p/219169)
@@ -306,10 +311,15 @@
 
 ## Spark3
 
-- Driver port   
+- Driver port
+  If the `spark.driver.port` fails, it is incremented by 1 and retried up to `spark.port.maxRetries` times.
+  `spark.blockManager.port` must be larger than `spark.driver.port` + `sparkspark.sport.maxRetries`
   - Port: Random
   - Protocol: HTTPS
-  - Property: `spark.driver.port`, `spark.port.maxRetries` and `spark.blockManager.port`
+  - Properties:
+    - `spark.driver.port`
+    - `spark.port.maxRetries`
+    - `spark.blockManager.port`
   - External access: yes
   - Sources
     - [Spark firewall configuration](https://community.cloudera.com/t5/Support-Questions/Spark-Jobs-failing-firewall-issue/td-p/219169)
