@@ -293,27 +293,12 @@
   - Sources:
     - [Oozie installation guide](https://oozie.apache.org/docs/4.3.1/AG_Install.html)
 
-## Spark2
+## Spark
 
 - Driver port
   If the `spark.driver.port` fails, it is incremented by 1 and retried up to `spark.port.maxRetries` times.
-  `spark.blockManager.port` must be larger than `spark.driver.port` + `sparkspark.sport.maxRetries`
-  - Port: Random
-  - Protocol: HTTPS
-  - Properties:
-    - `spark.driver.port`
-    - `spark.port.maxRetries`
-    - `spark.blockManager.port`
-  - External access: yes
-  - Sources
-    - [Spark firewall configuration](https://community.cloudera.com/t5/Support-Questions/Spark-Jobs-failing-firewall-issue/td-p/219169)
-    - [Spark2 configuration docs](https://spark.apache.org/docs/2.3.2/configuration.html)
-
-## Spark3
-
-- Driver port
-  If the `spark.driver.port` fails, it is incremented by 1 and retried up to `spark.port.maxRetries` times.
-  `spark.blockManager.port` must be larger than `spark.driver.port` + `sparkspark.sport.maxRetries`
+  `spark.blockManager.port` must be larger than `spark.driver.port` + `sparkspark.sport.maxRetries`.
+  *These parameters are identical for Spark2 and Spark3*.
   - Port: Random
   - Protocol: HTTPS
   - Properties:
