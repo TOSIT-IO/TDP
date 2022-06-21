@@ -4,13 +4,15 @@
 
 ## Trunk Data Platform Release TDP-0.1.0 components version
 
+### TDP Core
+
 | Component                   | Version | Apache Git branch                                                          | TDP Git Branch                                                                  | TDP commits                                                                           |
 | --------------------------- | ------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | Apache ZooKeeper            | 3.4.6   | release-3.4.6                                                              | XXX                                                                             | X.X.X                                                                                 |
 | Apache Hadoop               | 3.1.1   | [rel/release-3.1.1](https://github.com/apache/hadoop/commits/branch-3.1.1) | [branch-3.1.1-TDP](https://github.com/TOSIT-IO/hadoop/commits/branch-3.1.1-TDP) | [compare](https://github.com/TOSIT-IO/hadoop/compare/branch-3.1.1...branch-3.1.1-TDP) |
 | Apache Hive                 | 3.1.3   | [branch-3.1](https://github.com/apache/hive/commits/branch-3.1)            | [branch-3.1-TDP](https://github.com/TOSIT-IO/hive/commits/branch-3.1-TDP)       | [compare](https://github.com/TOSIT-IO/hive/compare/branch-3.1...branch-3.1-TDP)       |
-| Apache Hive 2               | 2.3.10  | [branch-2.3](https://github.com/apache/hive/commits/branch-2.3)            | [branch-2.3-TDP](https://github.com/TOSIT-IO/hive/commits/branch-2.3-TDP)          | [compare](https://github.com/TOSIT-IO/hive/compare/branch-2.3...branch-2.3-TDP)       |
-| Apache Hive 1               | 1.2.3   | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            | [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)       | [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
+| Apache Hive 2 (for Spark 3) | 2.3.10  | [branch-2.3](https://github.com/apache/hive/commits/branch-2.3)            | [branch-2.3-TDP](https://github.com/TOSIT-IO/hive/commits/branch-2.3-TDP)       | [compare](https://github.com/TOSIT-IO/hive/compare/branch-2.3...branch-2.3-TDP)       |
+| Apache Hive 1 (for Spark 2) | 1.2.3   | [branch-1.2](https://github.com/apache/hive/commits/branch-1.2)            | [branch-1.2-TDP](https://github.com/TOSIT-IO/hive/commits/branch-1.2-TDP)       | [compare](https://github.com/TOSIT-IO/hive/compare/branch-1.2...branch-1.2-TDP)       |
 | Apache Tez                  | 0.9.1   | [branch-0.9.1](https://github.com/apache/tez/commits/branch-0.9.1)         | [branch-0.9.1-TDP](https://github.com/TOSIT-IO/tez/commits/branch-0.9.1-TDP)    | [compare](https://github.com/TOSIT-IO/tez/compare/branch-0.9.1...branch-0.9.1-TDP)    |
 | Apache Spark                | 2.3.5   | [branch-2.3](https://github.com/apache/spark/commits/branch-2.3)           | [branch-2.3-TDP](https://github.com/TOSIT-IO/spark/commits/branch-2.3-TDP)      | [compare](https://github.com/TOSIT-IO/spark/compare/branch-2.3...branch-2.3-TDP)      |
 | Apache Spark 3              | 3.2.2   | [branch-3.2](https://github.com/apache/spark/commits/branch-3.2)           | [branch-3.2-TDP](https://github.com/TOSIT-IO/spark/commits/branch-3.2-TDP)      | [compare](https://github.com/TOSIT-IO/spark/compare/branch-3.2...branch-3.2-TDP)      |
@@ -24,9 +26,26 @@ Versions are approximately based on the [HDP 3.1.5 release](https://docs.clouder
 
 **Note**: For some projects, the Apache foundation maintains sometimes a branch with this the components on which are backported fixes and features. We will be using these branches as much as possible if they are maintained and compatible.
 
+### TDP Extras
+
+"TDP Extras" carries some projects that cannot be integrated to "TDP Core". There can be different reasons that keep the project outside of the core:
+
+- The project is not judged as a key component of the Hadoop ecosystem. This is the case of Airflow.
+- The project is not active enough. This is the case of Livy that has not been updated in 2 years.
+- The project has some incompatibilities with other "TDP Core" projects' releases. This is the case of Kafka 2.X that relies on ZooKeeper 3.5.X (and cannot use the ZooKeeper 3.4.6 of "TDP Core").
+
+| Component                          | Version | Apache Git branch                                                | TDP Git Branch                                                                       | TDP commits                                                                             |
+| ---------------------------------- | ------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| Apache ZooKeeper 3.5.9 (for Kafka) | 3.5.9   | release-3.5.9                                                    | XXX                                                                                  | X.X.X                                                                                   |
+| Apache Kafka                       | 2.8.2   | [2.8](https://github.com/TOSIT-IO/kafka/tree/2.8)                | [2.8-TDP](https://github.com/TOSIT-IO/kafka/tree/2.8-TDP)                            | [compare](https://github.com/TOSIT-IO/kafka/compare/2.8...2.8-TDP)                      |
+| Apache Livy                        | 0.8.0   | [master](https://github.com/TOSIT-IO/incubator-livy/tree/master) | [branch-0.8.0-TDP](https://github.com/TOSIT-IO/incubator-livy/tree/branch-0.8.0-TDP) | [compare](https://github.com/TOSIT-IO/incubator-livy/compare/master...branch-0.8.0-TDP) |
+| Apache Airflow                     | 2.2.2   | 2.2.2                                                            | XXX                                                                                  | X.X.X                                                                                   |
+
+**Note:** A project can graduate from "TDP Extras" to "TDP Core" if enough people are supporting it and/or if it is made compatible with all the other projects of the stack.
+
 ## TDP Components release
 
-Every TDP initial release is built from a reference branch on the Apache Git repository according to the above table. The main change from the original branches is the version declaration in the pom.xml files.
+Every TDP initial release is built from a reference branch on the Apache Git repository according to the above tables. The main change from the original branches is the version declaration in the pom.xml files.
 
 ## Building / Testing environment
 
