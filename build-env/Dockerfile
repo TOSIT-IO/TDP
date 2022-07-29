@@ -65,7 +65,6 @@ RUN apt-get -q update \
     locales \
     make \
     maven \
-    openjdk-11-jdk \
     openjdk-8-jdk \
     pinentry-curses \
     pkg-config \
