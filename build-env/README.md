@@ -18,22 +18,9 @@ The image can be built and tagged with:
 docker build . -t tdp-builder
 ```
 
-This is a base image on which you need to build another image containing you local user. This is mandatory because files needs to be written to your local Maven cache with the right permissions.
+This image contains an entrypoint that create a `builder` user on the fly if you specify `BUILDER_UID` and `BUILDER_GID` as environment variables. This allow to have a `builder` user with the same `uid` and `gid` as the host user. If these variables are not defined, the `builder` user will not be created.
 
-```
-docker build -t "hadoop-build-${USER_ID}" - <<UserSpecificDocker
-FROM tdp-builder
-RUN groupadd --non-unique -g ${GROUP_ID} ${USER_NAME}
-RUN useradd -g ${GROUP_ID} -u ${USER_ID} -k /root -m ${USER_NAME}
-RUN echo "${USER_NAME} ALL=NOPASSWD: ALL" > "/etc/sudoers.d/hadoop-build-${USER_ID}"
-ENV HOME /home/${USER_NAME}
-
-UserSpecificDocker
-```
-
-All these steps can run with `./bin/start-build-env.sh`
-
-**Note:** By default, the current directory is mounted to the build container, you can change the mounted directory to where the TDP source repository live by running `export TDP_HOME="/path/to/tdp"` before running the `start-build-env.sh` script. 
+The container needs to start as root to create the `builder` user so do not run tdp-builder with `docker run --user ...`, instead use variables above. The entrypoint will use `gosu` to exec command as `builder` user.
 
 ## Start the container
 
@@ -41,15 +28,23 @@ The container should be started with:
 
 ```
 docker run --rm=true -t -i \
-  -v "${TDP_HOME}:/tdp" \
+  -v "${TDP_HOME:-${PWD}}:/tdp" \
   -w "/tdp" \
-  -v "${HOME}/.m2:/home/${USER_NAME}/.m2${V_OPTS:-}" \
-  -u "${USER_NAME}" \
+  -v "${HOME}/.m2:/home/builder/.m2${V_OPTS:-}" \
+  -e "BUILDER_UID=$(id -u)" \
+  -e "BUILDER_GID=$(id -g)" \
   --ulimit nofile=500000:500000 \
-  "tdp-builder-${USER_NAME}"
+  tdp-builder
 ```
 
 The important parameters are:
 - ~/.m2 should mounted to have the compiled jar outside the container and use of your local maven cache for faster builds
+- `BUILDER_UID` and `BUILDER_GID` should be defined to create the `builder` user to not build as root
 - --ulimit nofile=500000:500000 is helpful to run the tests (some are resource intensive and break easily with a low ulimit)
 - TDP_HOME is where the TDP repositories (hadoop, hive, hbase, etc) are cloned
+
+## Start script
+
+All these steps can run with `./bin/start-build-env.sh`
+
+**Note:** By default, the current directory is mounted to the build container, you can change the mounted directory to where the TDP source repository live by running `export TDP_HOME="/path/to/tdp"` before running the `start-build-env.sh` script.

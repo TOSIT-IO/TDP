@@ -51,6 +51,7 @@ RUN apt-get -q update \
     gcc \
     git \
     gnupg-agent \
+    gosu \
     libbcprov-java \
     libbz2-dev \
     libcurl4-openssl-dev \
@@ -219,3 +220,6 @@ ENV HADOOP_SKIP_YETUS_VERIFICATION true
 RUN curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.58.3/hugo_0.58.3_Linux-64bit.deb \
     && dpkg --install hugo.deb \
     && rm hugo.deb
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
