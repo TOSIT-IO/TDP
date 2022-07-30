@@ -93,5 +93,5 @@ You can start a local building environment with the `bin/start-build-env.sh` scr
 
 **Note:** See `build-env/README.md` for details.
 
-To build TDP component binaries, attach to the running `tdp-builder-<user>` container and `git clone` the TDP component repository to it. Each TDP component's `tdp/README.md` has custom instructions to launch the build process.
+To build TDP component binaries, attach to the running `tdp-builder` container and `git clone` the TDP component repository to it. Each TDP component's `tdp/README.md` has custom instructions to launch the build process.
 Assign a directory path to the `TDP_HOME` variable in the `bin/start-build-env.sh` to control the local path of built TDP binaries.
