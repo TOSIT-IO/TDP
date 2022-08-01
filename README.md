@@ -52,6 +52,21 @@ Every TDP initial release is built from a reference branch on the Apache Git rep
 The builds / unit testing of the Maven Java projects of each component above can be run in Kubernetes pods which are scheduled by a Jenkins installation also running on Kubernetes.
 Kubernetes pods scheduling allows for **truly** reproducible and isolated builds. Jenkins' strong integration with the Java ecosystem is a perfect match to build the components of the distribution.
 
+### Build order
+
+- hadoop
+- tez
+- hive1
+- spark
+- hive2
+- spark3
+- hive
+- hbase
+- ranger
+- phoenix
+- phoenix-queryserver
+- knox
+
 ### Kubernetes
 
 Kubernetes was installed on Ubuntu 20.04 Virtual Machines with [kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/).
