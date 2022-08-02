@@ -21,6 +21,7 @@
 | Apache Phoenix              | 5.1.3   | [5.1](https://github.com/TOSIT-IO/phoenix/commits/5.1)                     | [5.1-TDP](https://github.com/TOSIT-IO/phoenix/commits/5.1-TDP)                  | [compare](https://github.com/TOSIT-IO/phoenix/compare/5.1...5.1-TDP)                  |
 | Apache Phoenix Query Server | 6.0.0   | [6.0.0](https://github.com/TOSIT-IO/phoenix-queryserver/commits/6.0.0)     | [6.0.0-TDP](https://github.com/TOSIT-IO/phoenix-queryserver/commits/6.0.0-TDP)  | [compare](https://github.com/TOSIT-IO/phoenix-queryserver/compare/6.0.0...6.0.0-TDP)  |
 | Apache Knox                 | 1.6.1   | [v1.6.1](https://github.com/TOSIT-IO/knox/commits/v1.6.1)                  | [v1.6.1-TDP](https://github.com/TOSIT-IO/knox/commits/v1.6.1-TDP)               | [compare](https://github.com/TOSIT-IO/knox/compare/v1.6.1...v1.6.1-TDP)               |
+| Apache HBase Connectors                 | 1.0.0   | [rel/1.0.0](https://github.com/apache/hbase-connectors/tree/rel/1.0.0)                  | [1.0.0-TDP](https://github.com/TOSIT-IO/hbase-connectors/tree/hbase-spark-2.3.5-1.0.0-TDP-0.1.0-SNAPSHOT)            | [compare](https://github.com/TOSIT-IO/hbase-connectors/compare/1.0.0...hbase-spark-2.3.5-1.0.0-TDP-0.1.0-SNAPSHOT)               |
 
 Versions are approximately based on the [HDP 3.1.5 release](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.5/release-notes/content/hdp_relnotes.html).
 
