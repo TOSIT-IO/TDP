@@ -56,6 +56,7 @@ RUN apt-get -q update \
     libbz2-dev \
     libcurl4-openssl-dev \
     libfuse-dev \
+    libkrb5-dev \
     libprotobuf-dev \
     libprotoc-dev \
     libsasl2-dev \
@@ -72,8 +73,10 @@ RUN apt-get -q update \
     python \
     python2.7 \
     python-pip \
+    python3-dev \
     python3-pip \
     python3-setuptools \
+    python3-venv \
     python-pkg-resources \
     python-setuptools \
     python-wheel \
@@ -147,20 +150,42 @@ RUN python3 -m pip install --upgrade pip
 
 ####
 # Install pandas and pyarrow for Spark 3
+# venv-pack for jupyterhub venv
 ####
 RUN python3 -m pip install numpy==1.19.5 \
     pandas==1.0.5 \
-    pyarrow==4.0.1
+    pyarrow==4.0.1 \
+    venv-pack==0.2.0
+
+###
+# Set nvm environment variables to tune installation
+###
+# node.js 10.x by default
+ENV NODE_VERSION 10.24.1
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+###
+# Install nvm to manage multiple version of node.js (install node.js 10.x by default)
+###
+run mkdir -p $NVM_DIR \
+    && curl -L -s -S https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
 ###
 # Install node.js 10.x for web UI framework (4.2.6 ships with Xenial)
 ###
 # hadolint ignore=DL3008
-RUN curl -L -s -S https://deb.nodesource.com/setup_10.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
+RUN source $NVM_DIR/nvm.sh \
+    && nvm alias default lts/dubnium \
+    && nvm use default \
     && npm install -g bower@1.8.8
+
+###
+# Install node.js 16.x for jupyterhub extensions
+###
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install 16.18.1
 
 ###
 ## Install Yarn 1.12.1 for web UI framework
