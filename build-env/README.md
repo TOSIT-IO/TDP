@@ -14,7 +14,7 @@ The Docker image in `Dockerfile` is based on the one provided in the official [i
 
 The image can be built and tagged with:
 
-```
+```bash
 docker build . -t tdp-builder
 ```
 
@@ -26,7 +26,7 @@ The container needs to start as root to create the `builder` user so do not run 
 
 The container should be started with:
 
-```
+```bash
 docker run --rm=true -t -i \
   -v "${TDP_HOME:-${PWD}}:/tdp" \
   -w "/tdp" \
