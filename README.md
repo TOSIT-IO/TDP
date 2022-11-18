@@ -45,6 +45,15 @@ Versions are approximately based on the [HDP 3.1.5 release](https://docs.clouder
 
 **Note:** A project can graduate from "TDP Extras" to "TDP Core" if enough people are supporting it and/or if it is made compatible with all the other projects of the stack.
 
+## Tested operating system (OS)
+
+Only bare metal and virtual machine deployment are tested. Container based OS may work but are not guaranteed.
+
+- Centos 7
+- Rocky 8
+
+Redhat like OS may work but are not guaranteed.
+
 ## TDP Components release
 
 Every TDP initial release is built from a reference branch on the Apache Git repository according to the above tables. The main change from the original branches is the version declaration in the pom.xml files.
