@@ -4,8 +4,7 @@
 
 Trunk Data Platform is an Open Source, free, Hadoop distribution.
 
-This distribution is built by EDF (French electricity provider) & DGFIP (Tax Office by the French Ministry of Finance),
-through an association called TOSIT (The Open source I Trust).
+This distribution is built by EDF (French electricity provider) & DGFIP (Tax Office by the French Ministry of Finance), through an association called TOSIT (The Open source I Trust).
 
 TDP is built from Apache projects source code.
 
