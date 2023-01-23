@@ -2,13 +2,7 @@
 
 Building Hadoop and other big data ecosystem project can be quite complex. Having an “official” building container is a good addition to any open source project, it helps both new developers on their journey to a first contribution as well as maintainers to reproduce issues more easily by providing a controlled and reproducible environment.
 
-The Docker image in `Dockerfile` is based on the one provided in the official [image](https://raw.githubusercontent.com/apache/hadoop/trunk/dev-support/docker/Dockerfile) provided by Apache. This image has got all the pre-requisites to build:
-
-- [Apache Hadoop (HDFS and YARN)](https://hadoop.apache.org/)
-- [Apache Spark](https://spark.apache.org/)
-- [Apache Hive](https://hive.apache.org/)
-- [Apache Tez](https://tez.apache.org/)
-- [Apache Zeppelin](https://zeppelin.apache.org/)
+The Docker image in `Dockerfile` is based on the one provided in the official [image](https://raw.githubusercontent.com/apache/hadoop/trunk/dev-support/docker/Dockerfile) provided by Apache. This image has got all the pre-requisites to build all the components of TDP.
 
 ## Build the image
 
