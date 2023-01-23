@@ -2,9 +2,31 @@
 
 ![](static/tdp_logo.png)
 
+Trunk Data Platform is an Open Source, free, Hadoop distribution.
+
+This distribution is built by EDF (French electricity provider) & DGFIP (Tax Office by the French Ministry of Finance),
+through an association called TOSIT (The Open source I Trust).
+
+TDP is built from Apache projects source code.
+
+## TDP repositories
+
+The TDP project is composed of multiple repositories:
+- [tdp-collection](https://github.com/TOSIT-IO/tdp-collection): main Ansible collection to deploy TDP core components.
+- [tdp-collection-extras](https://github.com/TOSIT-IO/tdp-collection-extras): Ansible collection to deploy extra components that are not part of TDP core.
+- [tdp-collection-prerequisites](https://github.com/TOSIT-IO/tdp-collection-prerequisites): Ansible collection to deploy prerequisite components to a TDP installation (i.e.: KDC, PostgreSQL, etc.).
+- [tdp-lib](https://github.com/TOSIT-IO/tdp-lib): Python library to configure, manage and deploy TDP.
+- [tdp-server](https://github.com/TOSIT-IO/tdp-server): REST API for tdp-lib orchestration.
+- [tdp-ui](https://github.com/TOSIT-IO/tdp-ui): Web UI for TDP clusters deployment and configuration, uses tdp-server.
+- [tdp-getting-started](https://github.com/TOSIT-IO/tdp-getting-started]): A ready to deploy TDP virtual environment based of Vagrant showcasing how to use every component of TDP.
+
+Each component of TDP also has its own repository.
+
 ## Trunk Data Platform Release TDP-0.1.0 components version
 
 ### TDP Core
+
+The following table shows the core components of TDP as well as the Apache branch they were based on and the TDP branch which serves as base for our releases.
 
 | Component                   | Version | Apache Git branch                                                          | TDP Git Branch                                                                  | TDP commits                                                                           |
 | --------------------------- | ------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
