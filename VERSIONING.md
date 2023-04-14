@@ -14,7 +14,11 @@ As of April 2023, TDP project includes:
 
 TDP Stack expose a version number that creates a coherent state of its software.
 
-Software version in the stack contains this version as well their base in the Apache upstream repository.
+The Stack is composed of 2 digits
+- The first one is the major version and should be bumped in the event of a major component change with breaking changes (i.e: Hadoop major version upgrade)
+- The second one is the minor version and should be bumped when a component version updates for security and/or new features with no or minor breaking changes
+
+Each software in the stack contains the Apache version it was based plus an appendix reserved for TOSIT users.
 
 For example:
 
@@ -25,7 +29,7 @@ For example:
 
 Unreleased changes should be tagged `-SNAPSHOT` as per Java Standard.
 
-Upgrading the stack for security bumps the last digit of the stack, whether it's TOSIT patch (included in the last 2 digits) or upgrading a software to a newer Apache upstream version.
+Upgrading the stack for security bumps the last digit of the stack. This upgrade can include an Apache upstream security path and/or a TOSIT patch. 
 
 ## TDP Collection
 
@@ -35,7 +39,7 @@ As an example TDP-Collection 1.0 installs TDP Stack `1.1`. When the stack upgrad
 
 New Features and bugfix in the collection bumps only the second digit as it still installs the same stack.
 
-TDP Collection works with TDP lib by exposing a DAG. A version of TDP Collection defines which version of TDP Lib's DAG it was built for.
+TDP Collection works with TDP lib by exposing a DAG. A version of TDP Collection defines which version of TDP Lib's DAG it was built for. TDP Lib provides no warranty on backwards nor upwards compatibility.
 
 ## TDP Manager
 
@@ -45,7 +49,6 @@ Major Version of TDP Lib should be bumped when the interface (the DAG exposed by
 
 ## Other Products
 
-Other products follow the same principles:
-
-- Software can be versioned by TOSIT but not integrated in the TDP Stack. They should expose a version number as a suffix.
-- Ansible collections (e.g: observability, extras) specify which version of the TDP Lib DAG they are built for
+- Software in the Hadoop ecosystem can be versioned by TOSIT but not integrated in the TDP Stack (e.g: Apache Kafka, Apache Airflow). They should expose a TOSIT version number as a suffix.
+- Ansible collections can extend other collection (e.g: observability, extras). They should expose which version of the parent collection they use.
+- Stand alone ansible collections must specify which version of the TDP Lib DAG they use.
