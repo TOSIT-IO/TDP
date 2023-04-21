@@ -17,7 +17,7 @@ The TDP project is composed of multiple repositories:
 - [tdp-lib](https://github.com/TOSIT-IO/tdp-lib): Python library to configure, manage and deploy TDP.
 - [tdp-server](https://github.com/TOSIT-IO/tdp-server): REST API for tdp-lib orchestration.
 - [tdp-ui](https://github.com/TOSIT-IO/tdp-ui): Web UI for TDP clusters deployment and configuration, uses tdp-server.
-- [tdp-getting-started](https://github.com/TOSIT-IO/tdp-getting-started]): A ready to deploy TDP virtual environment based of Vagrant showcasing how to use every component of TDP.
+- [tdp-getting-started](https://github.com/TOSIT-IO/tdp-getting-started): A ready to deploy TDP virtual environment based of Vagrant showcasing how to use every component of TDP.
 
 Each component of TDP also has its own repository.
 
