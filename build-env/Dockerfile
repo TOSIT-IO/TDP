@@ -20,6 +20,8 @@
 
 FROM ubuntu:bionic
 
+ARG DOCKER_GID_BUILD
+
 WORKDIR /root
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -88,6 +90,7 @@ RUN apt-get -q update \
     sudo \
     valgrind \
     zlib1g-dev \
+    unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -169,7 +172,7 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 ###
 # Install nvm to manage multiple version of node.js (install node.js 10.x by default)
 ###
-run mkdir -p $NVM_DIR \
+RUN mkdir -p $NVM_DIR \
     && curl -L -s -S https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
 ###
@@ -246,5 +249,21 @@ RUN curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.58
     && dpkg --install hugo.deb \
     && rm hugo.deb
 
+# Install gradle 8.1.1
+RUN  mkdir -p /opt/gradle \
+    && curl -L https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -o gradle-8.1.1-bin.zip \
+    && unzip gradle-8.1.1-bin.zip \
+    && mv gradle-8.1.1 /opt/gradle \
+    && rm gradle-8.1.1-bin.zip 
+
+ENV GRADLE_HOME=/opt/gradle/gradle-8.1.1
+ENV PATH=$PATH:$GRADLE_HOME/bin
+
+# Install Docker
+RUN curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker
+
+RUN groupadd -g $DOCKER_GID_BUILD docker
+
 COPY docker-entrypoint.sh /usr/local/bin/
+
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
