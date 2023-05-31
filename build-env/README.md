@@ -25,6 +25,7 @@ docker run --rm=true -t -i \
   -v "${TDP_HOME:-${PWD}}:/tdp" \
   -w "/tdp" \
   -v "${HOME}/.m2:/home/builder/.m2${V_OPTS:-}" \
+  -v "/var/run/docker.sock:/var/run/docker.sock" \
   -e "BUILDER_UID=$(id -u)" \
   -e "BUILDER_GID=$(id -g)" \
   -e "BUILDER_GROUPS=docker" \
