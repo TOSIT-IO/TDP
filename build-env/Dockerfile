@@ -80,16 +80,29 @@ RUN apt-get -q update \
     python-pkg-resources \
     python-setuptools \
     python-wheel \
-    r-base \
-    r-base-dev \
+    #r-base \
+    #r-base-dev \
     rsync \
     shellcheck \
     software-properties-common \
     sudo \
     valgrind \
+    wget \
     zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+ARG R_VERSION=4.2.3
+ARG OS_IDENTIFIER=ubuntu-1804
+
+RUN wget https://cdn.posit.co/r/${OS_IDENTIFIER}/pkgs/r-${R_VERSION}_1_amd64.deb && \
+    apt-get update -qq && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -f -y ./r-${R_VERSION}_1_amd64.deb && \
+    ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R && \
+    ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/bin/Rscript && \
+    ln -s /opt/R/${R_VERSION}/lib/R /usr/lib/R && \
+    rm r-${R_VERSION}_1_amd64.deb && \
+    rm -rf /var/lib/apt/lists/*
 
 ######
 # Set env vars required to build Hadoop
