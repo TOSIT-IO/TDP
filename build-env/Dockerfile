@@ -19,6 +19,7 @@
 # See BUILDING.txt.
 
 FROM ubuntu:bionic
+ARG OS_IDENTIFIER=ubuntu-1804
 
 WORKDIR /root
 
@@ -80,8 +81,6 @@ RUN apt-get -q update \
     python-pkg-resources \
     python-setuptools \
     python-wheel \
-    #r-base \
-    #r-base-dev \
     rsync \
     shellcheck \
     software-properties-common \
@@ -92,8 +91,11 @@ RUN apt-get -q update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+######
+# R version available in apt repos is not compatible when building spark R
+# Install custom R version
+######
 ARG R_VERSION=4.2.3
-ARG OS_IDENTIFIER=ubuntu-1804
 
 RUN wget https://cdn.posit.co/r/${OS_IDENTIFIER}/pkgs/r-${R_VERSION}_1_amd64.deb && \
     apt-get update -qq && \
