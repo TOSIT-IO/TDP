@@ -184,7 +184,7 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 ###
 # Install nvm to manage multiple version of node.js (install node.js 10.x by default)
 ###
-run mkdir -p $NVM_DIR \
+RUN mkdir -p $NVM_DIR \
     && curl -L -s -S https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
 ###
