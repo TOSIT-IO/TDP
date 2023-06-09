@@ -21,6 +21,8 @@
 FROM ubuntu:bionic
 ARG OS_IDENTIFIER=ubuntu-1804
 
+ARG DOCKER_GID_BUILD
+
 WORKDIR /root
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -271,6 +273,11 @@ RUN  mkdir -p /opt/gradle \
 
 ENV GRADLE_HOME=/opt/gradle/gradle-8.1.1
 ENV PATH=$PATH:$GRADLE_HOME/bin
+
+# Install Docker client
+RUN curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker
+
+RUN groupadd -g $DOCKER_GID_BUILD docker
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
