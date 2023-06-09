@@ -86,6 +86,7 @@ RUN apt-get -q update \
     shellcheck \
     software-properties-common \
     sudo \
+    unzip \
     valgrind \
     zlib1g-dev \
     && apt-get clean \
@@ -245,6 +246,16 @@ ENV HADOOP_SKIP_YETUS_VERIFICATION true
 RUN curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.58.3/hugo_0.58.3_Linux-64bit.deb \
     && dpkg --install hugo.deb \
     && rm hugo.deb
+
+# Install gradle 8.1.1
+RUN  mkdir -p /opt/gradle \
+    && curl -L https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -o gradle-8.1.1-bin.zip \
+    && unzip gradle-8.1.1-bin.zip \
+    && mv gradle-8.1.1 /opt/gradle \
+    && rm gradle-8.1.1-bin.zip 
+
+ENV GRADLE_HOME=/opt/gradle/gradle-8.1.1
+ENV PATH=$PATH:$GRADLE_HOME/bin
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
