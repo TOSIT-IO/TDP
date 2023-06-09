@@ -12,6 +12,14 @@ if [[ -n "$BUILDER_UID" ]] && [[ -n "$BUILDER_GID" ]]; then
         chown builder:builder /home/builder
         gosu builder cp -r /etc/skel/. /home/builder
     fi
+    if [[ -n "$BUILDER_GROUPS" ]]; then
+        IFS=","
+        read line <<<$BUILDER_GROUPS
+        FIELDS=( $line )
+        for f in ${FIELDS[@]} ; do
+            usermod -aG $f builder
+        done
+    fi
     # Avoid changing dir if a work dir is specified
     [[ "$PWD" == "/root" ]] && cd /home/builder
     if [[ -z "$@" ]]; then

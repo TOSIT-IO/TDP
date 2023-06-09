@@ -9,7 +9,7 @@ The Docker image in `Dockerfile` is based on the one provided in the official [i
 The image can be built and tagged with:
 
 ```bash
-docker build . -t tdp-builder
+docker build . -t tdp-builder --build-arg DOCKER_GID_BUILD=$(getent group docker | cut -d: -f3)
 ```
 
 This image contains an entrypoint that create a `builder` user on the fly if you specify `BUILDER_UID` and `BUILDER_GID` as environment variables. This allow to have a `builder` user with the same `uid` and `gid` as the host user. If these variables are not defined, the `builder` user will not be created.
@@ -25,9 +25,11 @@ docker run --rm=true -t -i \
   -v "${TDP_HOME:-${PWD}}:/tdp" \
   -w "/tdp" \
   -v "${HOME}/.m2:/home/builder/.m2${V_OPTS:-}" \
+  -v "/var/run/docker.sock:/var/run/docker.sock" \
   -e "BUILDER_UID=$(id -u)" \
   -e "BUILDER_GID=$(id -g)" \
   --ulimit nofile=500000:500000 \
+  -e "BUILDER_GROUPS=docker" \
   tdp-builder
 ```
 
