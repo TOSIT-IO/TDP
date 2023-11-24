@@ -1,4 +1,7 @@
-DOCKER_DIR=./build-env
+#!/usr/bin/env bash
+
+SCRIPT_DIR=$(cd `pwd`/`dirname ${BASH_SOURCE}` && pwd)
+DOCKER_DIR=$(cd $SCRIPT_DIR/../build-env && pwd )
 
 docker build -t tdp-builder "$DOCKER_DIR"
 
