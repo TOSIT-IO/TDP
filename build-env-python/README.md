@@ -9,7 +9,7 @@ The image being used is a manylinux2014 image originally based on CentOS 7 and c
 The image can be built and tagged with:
 
 ```bash
-docker build . -t tdp_builder_python
+docker build . -t tdp-builder-python
 ```
 
 ## Start the container
