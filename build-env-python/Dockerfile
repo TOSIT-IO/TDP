@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux2014_x86_64
+FROM quay.io/pypa/manylinux2014_x86_64:2024.09.05-1
 
 # Group paquets and repos
 RUN yum groups mark install "Development Tools"
