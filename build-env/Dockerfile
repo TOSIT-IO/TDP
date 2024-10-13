@@ -58,6 +58,7 @@ RUN apt-get -q update \
     libcurl4-openssl-dev \
     libfuse-dev \
     libkrb5-dev \
+    libpam0g-dev \
     libprotobuf-dev \
     libprotoc-dev \
     libsasl2-dev \
