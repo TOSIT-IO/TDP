@@ -46,7 +46,6 @@ RUN apt-get -q update \
     cmake \
     curl \
     doxygen \
-    findbugs \
     fuse \
     g++ \
     gcc \
@@ -58,7 +57,6 @@ RUN apt-get -q update \
     libcurl4-openssl-dev \
     libfuse-dev \
     libkrb5-dev \
-    libpam0g-dev \
     libprotobuf-dev \
     libprotoc-dev \
     libsasl2-dev \
@@ -68,20 +66,15 @@ RUN apt-get -q update \
     libzstd1-dev \
     locales \
     make \
-    maven \
     openjdk-8-jdk \
     pinentry-curses \
     pkg-config \
-    python \
-    python2.7 \
-    python-pip \
-    python3-dev \
+    python3 \
     python3-pip \
+    python3-pkg-resources \
     python3-setuptools \
     python3-venv \
-    python-pkg-resources \
-    python-setuptools \
-    python-wheel \
+    python3-wheel \
     rsync \
     shellcheck \
     software-properties-common \
@@ -92,6 +85,20 @@ RUN apt-get -q update \
     zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+ENV PYTHONIOENCODING=utf-8
+
+# Install Maven 3.9.9
+RUN  mkdir /opt/maven \
+    && curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip -o apache-maven-3.9.9-bin.zip \
+    && unzip apache-maven-3.9.9-bin.zip \
+    && mv apache-maven-3.9.9 /opt/maven \
+    && rm apache-maven-3.9.9-bin.zip 
+
+ENV MAVEN_HOME=/opt/maven/apache-maven-3.9.9
+ENV PATH=$PATH:$MAVEN_HOME/bin
 
 ######
 # R version available in apt repos is not compatible when building spark R
@@ -111,10 +118,8 @@ RUN wget https://cdn.posit.co/r/${OS_IDENTIFIER}/pkgs/r-${R_VERSION}_1_amd64.deb
 ######
 # Set env vars required to build Hadoop
 ######
-ENV MAVEN_HOME /usr
 # JAVA_HOME must be set in Maven >= 3.5.0 (MNG-6003)
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV FINDBUGS_HOME /usr
 
 #######
 # Install Boost 1.72 (1.65 ships with Bionic)
@@ -131,34 +136,33 @@ RUN mkdir -p /opt/boost-library \
     && cd /root \
     && rm -rf /opt/boost-library
 
+#######
+# Install SpotBugs 4.2.2
+#######
+RUN mkdir -p /opt/spotbugs \
+    && curl -L -s -S https://github.com/spotbugs/spotbugs/releases/download/4.2.2/spotbugs-4.2.2.tgz \
+      -o /opt/spotbugs.tgz \
+    && tar xzf /opt/spotbugs.tgz --strip-components 1 -C /opt/spotbugs \
+    && chmod +x /opt/spotbugs/bin/*
+ENV SPOTBUGS_HOME /opt/spotbugs
+
 ######
-# Install Google Protobuf 2.5.0 (2.6.0 ships with Xenial)
+# Install Google Protobuf 3.7.1 (3.0.0 ships with Bionic)
 ######
-RUN mkdir -p /opt/protobuf-src && \
-    curl -L -s -S \
-    https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz \
-    -o /opt/protobuf.tar.gz && \
-    tar xzf /opt/protobuf.tar.gz --strip-components 1 -C /opt/protobuf-src
-RUN cd /opt/protobuf-src && ./configure --prefix=/opt/protobuf && make install
+# hadolint ignore=DL3003
+RUN mkdir -p /opt/protobuf-src \
+    && curl -L -s -S \
+        https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protobuf-java-3.7.1.tar.gz \
+        -o /opt/protobuf.tar.gz \
+    && tar xzf /opt/protobuf.tar.gz --strip-components 1 -C /opt/protobuf-src \
+    && cd /opt/protobuf-src \
+    && ./configure --prefix=/opt/protobuf \
+    && make "-j$(nproc)" \
+    && make install \
+    && cd /root \
+    && rm -rf /opt/protobuf-src
 ENV PROTOBUF_HOME /opt/protobuf
 ENV PATH "${PATH}:/opt/protobuf/bin"
-
-####
-# Install pylint at fixed version (2.0.0 removed python2 support)
-# https://github.com/PyCQA/pylint/issues/2294
-####
-
-RUN pip2 install \
-    setuptools-scm==5.0.0 \
-    lazy-object-proxy==1.6.0 \
-    configparser==4.0.2 \
-    pylint==1.9.2
-
-####
-# Install dateutil.parser
-####
-RUN pip2 install python-dateutil==2.7.3
-
 
 ####
 # Upgrade pip3
@@ -169,40 +173,13 @@ RUN python3 -m pip install --upgrade pip
 # Install pandas and pyarrow for Spark 3
 # venv-pack for jupyterhub venv
 ####
-RUN python3 -m pip install numpy==1.19.5 \
+RUN pip3 install numpy==1.19.5 \
     pandas==1.0.5 \
     pyarrow==4.0.1 \
     venv-pack==0.2.0
 
-###
-# Set nvm environment variables to tune installation
-###
-# node.js 10.x by default
-ENV NODE_VERSION 10.24.1
-ENV NVM_DIR /usr/local/nvm
-ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-
-###
-# Install nvm to manage multiple version of node.js (install node.js 10.x by default)
-###
-RUN mkdir -p $NVM_DIR \
-    && curl -L -s -S https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-
-###
-# Install node.js 10.x for web UI framework (4.2.6 ships with Xenial)
-###
-# hadolint ignore=DL3008
-RUN source $NVM_DIR/nvm.sh \
-    && nvm alias default lts/dubnium \
-    && nvm use default \
-    && npm install -g bower@1.8.8
-
-###
-# Install node.js 16.x for jupyterhub extensions
-###
-RUN source $NVM_DIR/nvm.sh \
-    && nvm install 16.18.1
+# Install pylint and python-dateutil
+RUN pip3 install pylint==2.6.0 python-dateutil==2.8.1
 
 ###
 ## Install Yarn 1.12.1 for web UI framework
@@ -239,7 +216,7 @@ RUN mkdir -p /opt/isa-l-src \
     && cd /opt/isa-l-src \
     && ./autogen.sh \
     && ./configure \
-    && make \
+    && make "-j$(nproc)" \
     && make install \
     && cd /root \
     && rm -rf /opt/isa-l-src
@@ -247,7 +224,7 @@ RUN mkdir -p /opt/isa-l-src \
 ###
 # Avoid out of memory errors in builds
 ###
-ENV MAVEN_OPTS -Xms256m -Xmx1536m
+ENV MAVEN_OPTS -Xms256m -Xmx3072m
 
 # Skip gpg verification when downloading Yetus via yetus-wrapper
 ENV HADOOP_SKIP_YETUS_VERIFICATION true
