@@ -18,8 +18,8 @@
 # Dockerfile for installing the necessary dependencies for building Hadoop.
 # See BUILDING.txt.
 
-FROM ubuntu:bionic
-ARG OS_IDENTIFIER=ubuntu-1804
+FROM ubuntu:focal
+ARG OS_IDENTIFIER=ubuntu-2004
 
 WORKDIR /root
 
@@ -39,6 +39,8 @@ RUN apt-get -q update \
     && apt-get -q install -y --no-install-recommends \
     ant \
     apt-utils \
+    autoconf \
+    automake \
     bats \
     build-essential \
     bzip2 \
@@ -63,7 +65,7 @@ RUN apt-get -q update \
     libsnappy-dev \
     libssl-dev \
     libtool \
-    libzstd1-dev \
+    libzstd-dev \
     locales \
     make \
     openjdk-8-jdk \
@@ -81,6 +83,7 @@ RUN apt-get -q update \
     sudo \
     unzip \
     valgrind \
+    vim \
     wget \
     zlib1g-dev \
     && apt-get clean \
@@ -91,11 +94,11 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 ENV PYTHONIOENCODING=utf-8
 
 # Install Maven 3.9.9
-RUN  mkdir /opt/maven \
+RUN mkdir /opt/maven \
     && curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip -o apache-maven-3.9.9-bin.zip \
     && unzip apache-maven-3.9.9-bin.zip \
     && mv apache-maven-3.9.9 /opt/maven \
-    && rm apache-maven-3.9.9-bin.zip 
+    && rm apache-maven-3.9.9-bin.zip
 
 ENV MAVEN_HOME=/opt/maven/apache-maven-3.9.9
 ENV PATH=$PATH:$MAVEN_HOME/bin
@@ -121,16 +124,18 @@ RUN wget https://cdn.posit.co/r/${OS_IDENTIFIER}/pkgs/r-${R_VERSION}_1_amd64.deb
 # JAVA_HOME must be set in Maven >= 3.5.0 (MNG-6003)
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
+
 #######
-# Install Boost 1.72 (1.65 ships with Bionic)
+# Install Boost 1.86
 #######
+
 # hadolint ignore=DL3003
-RUN mkdir -p /opt/boost-library \
-    && curl -L https://sourceforge.net/projects/boost/files/boost/1.72.0/boost_1_72_0.tar.bz2/download > boost_1_72_0.tar.bz2 \
-    && mv boost_1_72_0.tar.bz2 /opt/boost-library \
+RUN  mkdir -p /opt/boost-library \
+    && curl -L https://sourceforge.net/projects/boost/files/boost/1.86.0/boost_1_86_0.tar.bz2/download >boost_1_86_0.tar.bz2 \
+    && mv boost_1_86_0.tar.bz2 /opt/boost-library \
     && cd /opt/boost-library \
-    && tar --bzip2 -xf boost_1_72_0.tar.bz2 \
-    && cd /opt/boost-library/boost_1_72_0 \
+    && tar --bzip2 -xf boost_1_86_0.tar.bz2 \
+    && cd /opt/boost-library/boost_1_86_0 \
     && ./bootstrap.sh --prefix=/usr/ \
     && ./b2 --without-python install \
     && cd /root \
@@ -141,21 +146,22 @@ RUN mkdir -p /opt/boost-library \
 #######
 RUN mkdir -p /opt/spotbugs \
     && curl -L -s -S https://github.com/spotbugs/spotbugs/releases/download/4.2.2/spotbugs-4.2.2.tgz \
-      -o /opt/spotbugs.tgz \
+    -o /opt/spotbugs.tgz \
     && tar xzf /opt/spotbugs.tgz --strip-components 1 -C /opt/spotbugs \
     && chmod +x /opt/spotbugs/bin/*
 ENV SPOTBUGS_HOME /opt/spotbugs
 
 ######
-# Install Google Protobuf 3.7.1 (3.0.0 ships with Bionic)
+# Install Google Protobuf 3.21.12
 ######
 # hadolint ignore=DL3003
 RUN mkdir -p /opt/protobuf-src \
     && curl -L -s -S \
-        https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protobuf-java-3.7.1.tar.gz \
-        -o /opt/protobuf.tar.gz \
+    https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.21.12.tar.gz \
+    -o /opt/protobuf.tar.gz \
     && tar xzf /opt/protobuf.tar.gz --strip-components 1 -C /opt/protobuf-src \
-    && cd /opt/protobuf-src \
+    && cd /opt/protobuf-src/ \
+    && ./autogen.sh \
     && ./configure --prefix=/opt/protobuf \
     && make "-j$(nproc)" \
     && make install \
@@ -164,22 +170,28 @@ RUN mkdir -p /opt/protobuf-src \
 ENV PROTOBUF_HOME /opt/protobuf
 ENV PATH "${PATH}:/opt/protobuf/bin"
 
+
+# Use venv because of new python system protection
+ENV VENV_PATH=/opt/venv
+RUN python3 -m venv $VENV_PATH
+ENV PATH "$VENV_PATH/bin:$PATH"
+
 ####
 # Upgrade pip3
 ####
-RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade pip setuptools wheel
 
 ####
 # Install pandas and pyarrow for Spark 3
 # venv-pack for jupyterhub venv
 ####
-RUN pip3 install numpy==1.19.5 \
-    pandas==1.0.5 \
-    pyarrow==4.0.1 \
+RUN $VENV_PATH/bin/pip3 install numpy==1.24.4 \
+    pandas==2.0.3 \
+    pyarrow==14.0.2 \
     venv-pack==0.2.0
 
 # Install pylint and python-dateutil
-RUN pip3 install pylint==2.6.0 python-dateutil==2.8.1
+RUN $VENV_PATH/bin/pip3 install pylint==2.6.0 python-dateutil==2.8.2
 
 ###
 ## Install Yarn 1.12.1 for web UI framework
@@ -245,7 +257,7 @@ RUN  mkdir -p /opt/gradle \
     && curl -L https://services.gradle.org/distributions/gradle-8.1.1-bin.zip -o gradle-8.1.1-bin.zip \
     && unzip gradle-8.1.1-bin.zip \
     && mv gradle-8.1.1 /opt/gradle \
-    && rm gradle-8.1.1-bin.zip 
+    && rm gradle-8.1.1-bin.zip
 
 ENV GRADLE_HOME=/opt/gradle/gradle-8.1.1
 ENV PATH=$PATH:$GRADLE_HOME/bin
