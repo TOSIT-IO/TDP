@@ -92,12 +92,12 @@ ENV PYTHONIOENCODING=utf-8
 
 # Install Maven 3.9.9
 RUN  mkdir /opt/maven \
-    && curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip -o apache-maven-3.9.9-bin.zip \
-    && unzip apache-maven-3.9.9-bin.zip \
-    && mv apache-maven-3.9.9 /opt/maven \
-    && rm apache-maven-3.9.9-bin.zip 
+    && curl -L https://dlcdn.apache.org/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.zip -o apache-maven-3.9.11-bin.zip \
+    && unzip apache-maven-3.9.11-bin.zip \
+    && mv apache-maven-3.9.11 /opt/maven \
+    && rm apache-maven-3.9.11-bin.zip 
 
-ENV MAVEN_HOME=/opt/maven/apache-maven-3.9.9
+ENV MAVEN_HOME=/opt/maven/apache-maven-3.9.11
 ENV PATH=$PATH:$MAVEN_HOME/bin
 
 ######
