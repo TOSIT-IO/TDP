@@ -16,4 +16,4 @@ docker build . -t tdp-builder-python
 
 Contrary to the `tdp-builder` container where components are compiled with maven putting the jar files in the `.m2` cache it is not the case here and therefore volumes, working directories and even users are different for each component.
 
-Check the documentation of the concerned component for the command to start the container. 
+Check the documentation of the concerned component for the command to start the container.
